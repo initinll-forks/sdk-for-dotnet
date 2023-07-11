@@ -351,4 +351,22 @@ public class Users : HttpClientProvider
 
         return await _usersApi.UpdateName(userId, bodyParameters, cancellationToken);
     }
+
+    /// <summary>
+    /// Update Password
+    /// </summary>
+    /// <para>Update the user password by its unique ID.</para>
+    /// <param name="userId">User ID.</param>
+    /// <param name="password">New user password. Must be at least 8 chars.</param>
+    /// <param name="cancellationToken">Cancellation Token</param>
+    /// <returns>User</returns>
+    public async Task<User> UpdatePassword(string userId, string password, CancellationToken cancellationToken = default)
+    {
+        IDictionary<string, object> bodyParameters = new Dictionary<string, object>
+        {
+            { "password", password }
+        };
+
+        return await _usersApi.UpdatePassword(userId, bodyParameters, cancellationToken);
+    }
 }

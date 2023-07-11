@@ -56,4 +56,7 @@ internal interface IUsers
 
     [Patch("/users/{userId}/name")]
     Task<User> UpdateName(string userId, [Body(BodySerializationMethod.UrlEncoded)] IDictionary<string, object> bodyParameters, CancellationToken cancellationToken = default);
+
+    [Patch("/users/{userId}/password")]
+    Task<User> UpdatePassword(string userId, [Body(BodySerializationMethod.UrlEncoded)] IDictionary<string, object> bodyParameters, CancellationToken cancellationToken = default);
 }
