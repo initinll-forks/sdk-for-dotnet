@@ -35,4 +35,7 @@ internal interface IUsers
 
     [Get("/users/{userId}")]
     Task<User> Get(string userId, CancellationToken cancellationToken = default);
+
+    [Get("/users/{userId}/prefs")]
+    Task<Preferences> GetPrefs(string userId, CancellationToken cancellationToken = default);
 }

@@ -249,4 +249,16 @@ public class Users : HttpClientProvider
     {
         return await _usersApi.Get(userId, cancellationToken);
     }
+
+    /// <summary>
+    /// Get User Preferences
+    /// </summary>
+    /// <para>Get the user preferences by its unique ID.</para>
+    /// <param name="userId">User ID.</param>
+    /// <param name="cancellationToken">Cancellation Token</param>
+    /// <returns>Preferences</returns>
+    public async Task<Preferences> GetPrefs(string userId, CancellationToken cancellationToken = default)
+    {
+        return await _usersApi.GetPrefs(userId, cancellationToken);
+    }
 }
