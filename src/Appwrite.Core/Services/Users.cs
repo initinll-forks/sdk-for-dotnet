@@ -273,4 +273,16 @@ public class Users : HttpClientProvider
     {
         return await _usersApi.ListSessions(userId, cancellationToken);
     }
+
+    /// <summary>
+    /// List User Memberships
+    /// </summary>
+    /// <para>Get the user membership list by its unique ID.</para>
+    /// <param name="userId">User ID.</param>
+    /// <param name="cancellationToken">Cancellation Token</param>
+    /// <returns>MembershipList</returns>
+    public async Task<MembershipList> ListMemberships(string userId, CancellationToken cancellationToken = default)
+    {
+        return await _usersApi.ListMemberships(userId, cancellationToken);
+    }
 }

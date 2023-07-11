@@ -41,4 +41,7 @@ internal interface IUsers
 
     [Get("/users/{userId}/sessions")]
     Task<SessionList> ListSessions(string userId, CancellationToken cancellationToken = default);
+
+    [Get("/users/{userId}/memberships")]
+    Task<MembershipList> ListMemberships(string userId, CancellationToken cancellationToken = default);
 }
