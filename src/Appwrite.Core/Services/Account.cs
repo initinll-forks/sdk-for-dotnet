@@ -63,13 +63,13 @@ public class Account : HttpClientProvider
 
     public async Task<User> UpdatePassword(string password, string? oldPassword = null, CancellationToken cancellationToken = default)
     {
-        IDictionary<string, object> queryParameters = new Dictionary<string, object>
+        IDictionary<string, object> bodyParameters = new Dictionary<string, object>
         {
             { "password", password },
             { "oldPassword", oldPassword }
         };
 
-        return await _accountApi.UpdateName(queryParameters, cancellationToken);
+        return await _accountApi.UpdateName(bodyParameters, cancellationToken);
     }
 
     public async Task<User> UpdateEmail(string email, string password, CancellationToken cancellationToken = default)

@@ -25,7 +25,7 @@ internal interface IAccount
     Task<User> UpdateName([Body(BodySerializationMethod.UrlEncoded)] IDictionary<string, object> bodyParameters, CancellationToken cancellationToken = default);
 
     [Patch("/account/password")]
-    Task<User> UpdatePassword([Query] IDictionary<string, object> queryParameters = null, CancellationToken cancellationToken = default);
+    Task<User> UpdatePassword([Body(BodySerializationMethod.UrlEncoded)] IDictionary<string, object> bodyParameters, CancellationToken cancellationToken = default);
 
     [Patch("/account/email")]
     Task<User> UpdateEmail([Query] IDictionary<string, object> queryParameters = null, CancellationToken cancellationToken = default);
