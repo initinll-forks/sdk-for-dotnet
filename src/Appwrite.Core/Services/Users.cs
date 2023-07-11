@@ -423,4 +423,22 @@ public class Users : HttpClientProvider
 
         return await _usersApi.UpdateEmailVerification(userId, bodyParameters, cancellationToken);
     }
+
+    /// <summary>
+    /// Update User Preferences
+    /// </summary>
+    /// <para>Update the user preferences by its unique ID. The object you pass is stored as is, and replaces any previous value. The maximum allowed prefs size is 64kB and throws error if exceeded.</para>
+    /// <param name="userId">User ID.</param>
+    /// <param name="prefs">Prefs key-value JSON object.</param>
+    /// <param name="cancellationToken">Cancellation Token</param>
+    /// <returns>Preferences</returns>
+    public async Task<Preferences> UpdatePrefs(string userId, object prefs, CancellationToken cancellationToken = default)
+    {
+        IDictionary<string, object> bodyParameters = new Dictionary<string, object>
+        {
+            { "prefs", prefs }
+        };
+
+        return await _usersApi.UpdatePrefs(userId, bodyParameters, cancellationToken);
+    }
 }

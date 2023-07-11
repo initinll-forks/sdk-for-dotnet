@@ -68,4 +68,7 @@ internal interface IUsers
 
     [Patch("/users/{userId}/verification")]
     Task<User> UpdateEmailVerification(string userId, [Body(BodySerializationMethod.UrlEncoded)] IDictionary<string, object> bodyParameters, CancellationToken cancellationToken = default);
+
+    [Patch("/users/{userId}/prefs")]
+    Task<Preferences> UpdatePrefs(string userId, [Body(BodySerializationMethod.UrlEncoded)] IDictionary<string, object> bodyParameters, CancellationToken cancellationToken = default);
 }
