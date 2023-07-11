@@ -285,4 +285,16 @@ public class Users : HttpClientProvider
     {
         return await _usersApi.ListMemberships(userId, cancellationToken);
     }
+
+    /// <summary>
+    /// List User Logs
+    /// </summary>
+    /// <para>Get the user activity logs list by its unique ID.</para>
+    /// <param name="userId">User ID.</param>
+    /// <param name="cancellationToken">Cancellation Token</param>
+    /// <returns>LogList</returns>
+    public async Task<LogList> ListLogs(string userId, CancellationToken cancellationToken = default)
+    {
+        return await _usersApi.ListLogs(userId, cancellationToken);
+    }
 }
