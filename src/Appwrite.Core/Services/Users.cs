@@ -405,4 +405,22 @@ public class Users : HttpClientProvider
 
         return await _usersApi.UpdatePhone(userId, bodyParameters, cancellationToken);
     }
+
+    /// <summary>
+    /// Update Email Verification
+    /// </summary>
+    /// <para>Update the user email verification status by its unique ID.</para>
+    /// <param name="userId">User ID.</param>
+    /// <param name="emailVerification">User email verification status.</param>
+    /// <param name="cancellationToken">Cancellation Token</param>
+    /// <returns>User</returns>
+    public async Task<User> UpdateEmailVerification(string userId, string emailVerification, CancellationToken cancellationToken = default)
+    {
+        IDictionary<string, object> bodyParameters = new Dictionary<string, object>
+        {
+            { "emailVerification", emailVerification }
+        };
+
+        return await _usersApi.UpdateEmailVerification(userId, bodyParameters, cancellationToken);
+    }
 }
