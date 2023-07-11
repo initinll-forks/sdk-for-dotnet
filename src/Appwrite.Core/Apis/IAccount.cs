@@ -28,10 +28,10 @@ internal interface IAccount
     Task<User> UpdatePassword([Body(BodySerializationMethod.UrlEncoded)] IDictionary<string, object> bodyParameters, CancellationToken cancellationToken = default);
 
     [Patch("/account/email")]
-    Task<User> UpdateEmail([Query] IDictionary<string, object> queryParameters = null, CancellationToken cancellationToken = default);
+    Task<User> UpdateEmail([Body(BodySerializationMethod.UrlEncoded)] IDictionary<string, object> bodyParameters, CancellationToken cancellationToken = default);
 
     [Patch("/account/phone")]
-    Task<User> UpdatePhone([Query] IDictionary<string, object> queryParameters = null, CancellationToken cancellationToken = default);
+    Task<User> UpdatePhone([Body(BodySerializationMethod.UrlEncoded)] IDictionary<string, object> bodyParameters, CancellationToken cancellationToken = default);
 
     [Patch("/account/prefs")]
     Task<User> UpdatePreferences([Query] IDictionary<string, object> queryParameters = null, CancellationToken cancellationToken = default);
