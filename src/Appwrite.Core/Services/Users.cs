@@ -441,4 +441,17 @@ public class Users : HttpClientProvider
 
         return await _usersApi.UpdatePrefs(userId, bodyParameters, cancellationToken);
     }
+
+    /// <summary>
+    /// Delete User Session
+    /// </summary>
+    /// <para>Delete a user sessions by its unique ID.</para>
+    /// <param name="userId">User ID.</param>
+    /// <param name="sessionId">Session ID.</param>
+    /// <param name="cancellationToken">Cancellation Token</param>
+    /// <returns></returns>
+    public async Task DeleteSession(string userId, string sessionId, CancellationToken cancellationToken = default)
+    {
+        await _usersApi.DeleteSession(userId, sessionId, cancellationToken);
+    }
 }

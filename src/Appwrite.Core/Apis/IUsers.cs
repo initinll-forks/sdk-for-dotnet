@@ -71,4 +71,7 @@ internal interface IUsers
 
     [Patch("/users/{userId}/prefs")]
     Task<Preferences> UpdatePrefs(string userId, [Body(BodySerializationMethod.UrlEncoded)] IDictionary<string, object> bodyParameters, CancellationToken cancellationToken = default);
+
+    [Delete("/users/{userId}/sessions/{sessionId}")]
+    Task DeleteSession(string userId, string sessionId, CancellationToken cancellationToken = default);
 }
