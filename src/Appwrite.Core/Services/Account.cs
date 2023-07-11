@@ -126,18 +126,18 @@ public class Account : HttpClientProvider
 
     public async Task<Token> CreateRecovery(string email, string url, CancellationToken cancellationToken = default)
     {
-        IDictionary<string, object> queryParameters = new Dictionary<string, object>
+        IDictionary<string, object> bodyParameters = new Dictionary<string, object>
         {
             { "email", email },
             { "url", url }
         };
 
-        return await _accountApi.CreateRecovery(queryParameters, cancellationToken);
+        return await _accountApi.CreateRecovery(bodyParameters, cancellationToken);
     }
 
     public async Task<Token> UpdateRecovery(string userId, string secret, string password, string passwordAgain, CancellationToken cancellationToken = default)
     {
-        IDictionary<string, object> queryParameters = new Dictionary<string, object>
+        IDictionary<string, object> bodyParameters = new Dictionary<string, object>
         {
             { "userId", userId },
             { "secret", secret },
@@ -145,28 +145,28 @@ public class Account : HttpClientProvider
             { "passwordAgain", passwordAgain }
         };
 
-        return await _accountApi.UpdateRecovery(queryParameters, cancellationToken);
+        return await _accountApi.UpdateRecovery(bodyParameters, cancellationToken);
     }
 
     public async Task<Token> CreateVerification(string url, CancellationToken cancellationToken = default)
     {
-        IDictionary<string, object> queryParameters = new Dictionary<string, object>
+        IDictionary<string, object> bodyParameters = new Dictionary<string, object>
         {
             { "url", url }
         };
 
-        return await _accountApi.CreateRecovery(queryParameters, cancellationToken);
+        return await _accountApi.CreateRecovery(bodyParameters, cancellationToken);
     }
 
     public async Task<Token> UpdateVerification(string userId, string secret, CancellationToken cancellationToken = default)
     {
-        IDictionary<string, object> queryParameters = new Dictionary<string, object>
+        IDictionary<string, object> bodyParameters = new Dictionary<string, object>
         {
             { "userId", userId },
             { "secret", secret }
         };
 
-        return await _accountApi.UpdateVerification(queryParameters, cancellationToken);
+        return await _accountApi.UpdateVerification(bodyParameters, cancellationToken);
     }
 
     public async Task<Token> CreatePhoneVerification(CancellationToken cancellationToken = default)
@@ -176,12 +176,12 @@ public class Account : HttpClientProvider
 
     public async Task<Token> UpdatePhoneVerification(string userId, string secret, CancellationToken cancellationToken = default)
     {
-        IDictionary<string, object> queryParameters = new Dictionary<string, object>
+        IDictionary<string, object> bodyParameters = new Dictionary<string, object>
         {
             { "userId", userId },
             { "secret", secret }
         };
 
-        return await _accountApi.UpdatePhoneVerification(queryParameters, cancellationToken);
+        return await _accountApi.UpdatePhoneVerification(bodyParameters, cancellationToken);
     }
 }

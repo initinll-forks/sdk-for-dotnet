@@ -49,20 +49,20 @@ internal interface IAccount
     Task DeleteSessions(CancellationToken cancellationToken = default);
 
     [Post("/account/recovery")]
-    Task<Token> CreateRecovery([Body(BodySerializationMethod.UrlEncoded)] IDictionary<string, object> queryParameters = null, CancellationToken cancellationToken = default);
+    Task<Token> CreateRecovery([Body(BodySerializationMethod.UrlEncoded)] IDictionary<string, object> bodyParameters = null, CancellationToken cancellationToken = default);
 
     [Put("/account/recovery")]
-    Task<Token> UpdateRecovery([Body(BodySerializationMethod.UrlEncoded)] IDictionary<string, object> queryParameters = null, CancellationToken cancellationToken = default);
+    Task<Token> UpdateRecovery([Body(BodySerializationMethod.UrlEncoded)] IDictionary<string, object> bodyParameters = null, CancellationToken cancellationToken = default);
 
     [Post("/account/verification")]
-    Task<Token> CreateVerification([Body(BodySerializationMethod.UrlEncoded)] IDictionary<string, object> queryParameters = null, CancellationToken cancellationToken = default);
+    Task<Token> CreateVerification([Body(BodySerializationMethod.UrlEncoded)] IDictionary<string, object> bodyParameters = null, CancellationToken cancellationToken = default);
 
     [Put("/account/verification")]
-    Task<Token> UpdateVerification([Body(BodySerializationMethod.UrlEncoded)] IDictionary<string, object> queryParameters = null, CancellationToken cancellationToken = default);
+    Task<Token> UpdateVerification([Body(BodySerializationMethod.UrlEncoded)] IDictionary<string, object> bodyParameters = null, CancellationToken cancellationToken = default);
 
     [Post("/account/verification/phone")]
     Task<Token> CreatePhoneVerification(CancellationToken cancellationToken = default);
 
     [Put("/account/verification/phone")]
-    Task<Token> UpdatePhoneVerification([Body(BodySerializationMethod.UrlEncoded)] IDictionary<string, object> queryParameters = null, CancellationToken cancellationToken = default);
+    Task<Token> UpdatePhoneVerification([Body(BodySerializationMethod.UrlEncoded)] IDictionary<string, object> bodyParameters = null, CancellationToken cancellationToken = default);
 }
