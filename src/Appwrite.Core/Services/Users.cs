@@ -261,4 +261,16 @@ public class Users : HttpClientProvider
     {
         return await _usersApi.GetPrefs(userId, cancellationToken);
     }
+
+    /// <summary>
+    /// List User Sessions
+    /// </summary>
+    /// <para>Get the user sessions list by its unique ID.</para>
+    /// <param name="userId">User ID.</param>
+    /// <param name="cancellationToken">Cancellation Token</param>
+    /// <returns>SessionList</returns>
+    public async Task<SessionList> ListSessions(string userId, CancellationToken cancellationToken = default)
+    {
+        return await _usersApi.ListSessions(userId, cancellationToken);
+    }
 }
