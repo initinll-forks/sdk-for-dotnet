@@ -53,4 +53,7 @@ internal interface IUsers
 
     [Patch("/users/{userId}/verification/phone")]
     Task<User> UpdatePhoneVerification(string userId, [Body(BodySerializationMethod.UrlEncoded)] IDictionary<string, object> bodyParameters, CancellationToken cancellationToken = default);
+
+    [Patch("/users/{userId}/name")]
+    Task<User> UpdateName(string userId, [Body(BodySerializationMethod.UrlEncoded)] IDictionary<string, object> bodyParameters, CancellationToken cancellationToken = default);
 }

@@ -333,4 +333,22 @@ public class Users : HttpClientProvider
 
         return await _usersApi.UpdatePhoneVerification(userId, bodyParameters, cancellationToken);
     }
+
+    /// <summary>
+    /// Update Name
+    /// </summary>
+    /// <para>Update the user name by its unique ID.</para>
+    /// <param name="userId">User ID.</param>
+    /// <param name="name">User name. Max length: 128 chars.</param>
+    /// <param name="cancellationToken">Cancellation Token</param>
+    /// <returns>User</returns>
+    public async Task<User> UpdateName(string userId, string name, CancellationToken cancellationToken = default)
+    {
+        IDictionary<string, object> bodyParameters = new Dictionary<string, object>
+        {
+            { "name", name }
+        };
+
+        return await _usersApi.UpdateName(userId, bodyParameters, cancellationToken);
+    }
 }
