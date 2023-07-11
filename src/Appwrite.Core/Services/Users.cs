@@ -387,4 +387,22 @@ public class Users : HttpClientProvider
 
         return await _usersApi.UpdateEmail(userId, bodyParameters, cancellationToken);
     }
+
+    /// <summary>
+    /// Update Phone
+    /// </summary>
+    /// <para>Update the user phone by its unique ID.</para>
+    /// <param name="userId">User ID.</param>
+    /// <param name="number">User phone number.</param>
+    /// <param name="cancellationToken">Cancellation Token</param>
+    /// <returns>User</returns>
+    public async Task<User> UpdatePhone(string userId, string number, CancellationToken cancellationToken = default)
+    {
+        IDictionary<string, object> bodyParameters = new Dictionary<string, object>
+        {
+            { "number", number }
+        };
+
+        return await _usersApi.UpdatePhone(userId, bodyParameters, cancellationToken);
+    }
 }
