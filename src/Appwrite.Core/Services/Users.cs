@@ -369,4 +369,22 @@ public class Users : HttpClientProvider
 
         return await _usersApi.UpdatePassword(userId, bodyParameters, cancellationToken);
     }
+
+    /// <summary>
+    /// Update Email
+    /// </summary>
+    /// <para>Update the user email by its unique ID.</para>
+    /// <param name="userId">User ID.</param>
+    /// <param name="email">User email.</param>
+    /// <param name="cancellationToken">Cancellation Token</param>
+    /// <returns>User</returns>
+    public async Task<User> UpdateEmail(string userId, string email, CancellationToken cancellationToken = default)
+    {
+        IDictionary<string, object> bodyParameters = new Dictionary<string, object>
+        {
+            { "email", email }
+        };
+
+        return await _usersApi.UpdateEmail(userId, bodyParameters, cancellationToken);
+    }
 }

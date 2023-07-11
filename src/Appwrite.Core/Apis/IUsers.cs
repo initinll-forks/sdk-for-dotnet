@@ -59,4 +59,7 @@ internal interface IUsers
 
     [Patch("/users/{userId}/password")]
     Task<User> UpdatePassword(string userId, [Body(BodySerializationMethod.UrlEncoded)] IDictionary<string, object> bodyParameters, CancellationToken cancellationToken = default);
+
+    [Patch("/users/{userId}/email")]
+    Task<User> UpdateEmail(string userId, [Body(BodySerializationMethod.UrlEncoded)] IDictionary<string, object> bodyParameters, CancellationToken cancellationToken = default);
 }
