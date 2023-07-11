@@ -237,4 +237,16 @@ public class Users : HttpClientProvider
 
         return await _usersApi.List(queryParameters, cancellationToken);
     }
+
+    /// <summary>
+    /// Get User
+    /// </summary>
+    /// <para>Get a user by its unique ID.</para>
+    /// <param name="userId">User ID.</param>
+    /// <param name="cancellationToken">Cancellation Token</param>
+    /// <returns>User</returns>
+    public async Task<User> Get(string userId, CancellationToken cancellationToken = default)
+    {
+        return await _usersApi.Get(userId, cancellationToken);
+    }
 }

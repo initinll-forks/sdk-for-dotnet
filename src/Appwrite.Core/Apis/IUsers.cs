@@ -32,4 +32,7 @@ internal interface IUsers
 
     [Get("/users")]
     Task<UserList> List([Query] IDictionary<string, object> queryParameters = null, CancellationToken cancellationToken = default);
+
+    [Get("/users/{userId}")]
+    Task<User> Get(string userId, CancellationToken cancellationToken = default);
 }
