@@ -28,7 +28,7 @@ public class Users : HttpClientProvider
     /// <returns>User</returns>
     public async Task<User> Create(string userId, string? email = null, string? phone = null, string? password = null, string? name = null, CancellationToken cancellationToken = default)
     {
-        IDictionary<string, object> queryParameters = new Dictionary<string, object>
+        IDictionary<string, object> bodyParameters = new Dictionary<string, object>
         {
             { "userId", userId },
             { "email", email },
@@ -37,7 +37,7 @@ public class Users : HttpClientProvider
             { "name", name }
         };
 
-        return await _usersApi.Create(queryParameters, cancellationToken);
+        return await _usersApi.Create(bodyParameters, cancellationToken);
     }
 
     /// <summary>
@@ -52,7 +52,7 @@ public class Users : HttpClientProvider
     /// <returns>User</returns>
     public async Task<User> CreateBcryptUser(string userId, string email, string password, string? name = null, CancellationToken cancellationToken = default)
     {
-        IDictionary<string, object> queryParameters = new Dictionary<string, object>
+        IDictionary<string, object> bodyParameters = new Dictionary<string, object>
         {
             { "userId", userId },
             { "email", email },
@@ -60,7 +60,7 @@ public class Users : HttpClientProvider
             { "name", name }
         };
 
-        return await _usersApi.CreateBcryptUser(queryParameters, cancellationToken);
+        return await _usersApi.CreateBcryptUser(bodyParameters, cancellationToken);
     }
 
     /// <summary>
@@ -75,7 +75,7 @@ public class Users : HttpClientProvider
     /// <returns>User</returns>
     public async Task<User> CreateMD5User(string userId, string email, string password, string? name = null, CancellationToken cancellationToken = default)
     {
-        IDictionary<string, object> queryParameters = new Dictionary<string, object>
+        IDictionary<string, object> bodyParameters = new Dictionary<string, object>
         {
             { "userId", userId },
             { "email", email },
@@ -83,7 +83,7 @@ public class Users : HttpClientProvider
             { "name", name }
         };
 
-        return await _usersApi.CreateMD5User(queryParameters, cancellationToken);
+        return await _usersApi.CreateMD5User(bodyParameters, cancellationToken);
     }
 
     /// <summary>
@@ -98,7 +98,7 @@ public class Users : HttpClientProvider
     /// <returns>User</returns>
     public async Task<User> CreateArgon2User(string userId, string email, string password, string? name = null, CancellationToken cancellationToken = default)
     {
-        IDictionary<string, object> queryParameters = new Dictionary<string, object>
+        IDictionary<string, object> bodyParameters = new Dictionary<string, object>
         {
             { "userId", userId },
             { "email", email },
@@ -106,7 +106,7 @@ public class Users : HttpClientProvider
             { "name", name }
         };
 
-        return await _usersApi.CreateArgon2User(queryParameters, cancellationToken);
+        return await _usersApi.CreateArgon2User(bodyParameters, cancellationToken);
     }
 
     /// <summary>
@@ -122,7 +122,7 @@ public class Users : HttpClientProvider
     /// <returns>User</returns>
     public async Task<User> CreateSHAUser(string userId, string email, string password, string? passwordVersion = null, string? name = null, CancellationToken cancellationToken = default)
     {
-        IDictionary<string, object> queryParameters = new Dictionary<string, object>
+        IDictionary<string, object> bodyParameters = new Dictionary<string, object>
         {
             { "userId", userId },
             { "email", email },
@@ -131,7 +131,7 @@ public class Users : HttpClientProvider
             { "name", name }
         };
 
-        return await _usersApi.CreateSHAUser(queryParameters, cancellationToken);
+        return await _usersApi.CreateSHAUser(bodyParameters, cancellationToken);
     }
 
     /// <summary>
@@ -146,7 +146,7 @@ public class Users : HttpClientProvider
     /// <returns>User</returns>
     public async Task<User> CreatePHPassUser(string userId, string email, string password, string? name = null, CancellationToken cancellationToken = default)
     {
-        IDictionary<string, object> queryParameters = new Dictionary<string, object>
+        IDictionary<string, object> bodyParameters = new Dictionary<string, object>
         {
             { "userId", userId },
             { "email", email },
@@ -154,7 +154,7 @@ public class Users : HttpClientProvider
             { "name", name }
         };
 
-        return await _usersApi.CreatePHPassUser(queryParameters, cancellationToken);
+        return await _usersApi.CreatePHPassUser(bodyParameters, cancellationToken);
     }
 
     /// <summary>
@@ -174,7 +174,7 @@ public class Users : HttpClientProvider
     /// <returns>User</returns>
     public async Task<User> CreateScryptUser(string userId, string email, string password, string passwordSalt, string passwordCpu, string passwordMemory, string passwordParallel, string passwordLength, string? name = null, CancellationToken cancellationToken = default)
     {
-        IDictionary<string, object> queryParameters = new Dictionary<string, object>
+        IDictionary<string, object> bodyParameters = new Dictionary<string, object>
         {
             { "userId", userId },
             { "email", email },
@@ -187,7 +187,7 @@ public class Users : HttpClientProvider
             { "name", name }
         };
 
-        return await _usersApi.CreateScryptUser(queryParameters, cancellationToken);
+        return await _usersApi.CreateScryptUser(bodyParameters, cancellationToken);
     }
 
     /// <summary>
@@ -205,7 +205,7 @@ public class Users : HttpClientProvider
     /// <returns>User</returns>
     public async Task<User> CreateScryptModifiedUser(string userId, string email, string password, string passwordSalt, string passwordSaltSeparator, string passwordSignerKey, string? name = null, CancellationToken cancellationToken = default)
     {
-        IDictionary<string, object> queryParameters = new Dictionary<string, object>
+        IDictionary<string, object> bodyParameters = new Dictionary<string, object>
         {
             { "userId", userId },
             { "email", email },
@@ -216,7 +216,7 @@ public class Users : HttpClientProvider
             { "name", name }
         };
 
-        return await _usersApi.CreateScryptModifiedUser(queryParameters, cancellationToken);
+        return await _usersApi.CreateScryptModifiedUser(bodyParameters, cancellationToken);
     }
 
     /// <summary>
@@ -296,5 +296,23 @@ public class Users : HttpClientProvider
     public async Task<LogList> ListLogs(string userId, CancellationToken cancellationToken = default)
     {
         return await _usersApi.ListLogs(userId, cancellationToken);
+    }
+
+    /// <summary>
+    /// Update User Status
+    /// </summary>
+    /// <para>Update the user status by its unique ID. Use this endpoint as an alternative to deleting a user if you want to keep user's ID reserved.</para>
+    /// <param name="userId">User ID.</param>
+    /// <param name="status">User Status. To activate the user pass true and to block the user pass false.</param>
+    /// <param name="cancellationToken">Cancellation Token</param>
+    /// <returns>User</returns>
+    public async Task<User> UpdateStatus(string userId, bool status, CancellationToken cancellationToken = default)
+    {
+        IDictionary<string, object> bodyParameters = new Dictionary<string, object>
+        {
+            { "status", status }
+        };
+
+        return await _usersApi.UpdateStatus(userId, bodyParameters, cancellationToken);
     }
 }
