@@ -96,12 +96,12 @@ public class Account : HttpClientProvider
 
     public async Task<User> UpdatePreferences(object prefs, CancellationToken cancellationToken = default)
     {
-        IDictionary<string, object> queryParameters = new Dictionary<string, object>
+        IDictionary<string, object> bodyParameters = new Dictionary<string, object>
         {
             { "prefs", prefs }
         };
 
-        return await _accountApi.UpdatePreferences(queryParameters, cancellationToken);
+        return await _accountApi.UpdatePreferences(bodyParameters, cancellationToken);
     }
 
     public async Task<User> UpdateStatus(CancellationToken cancellationToken = default)

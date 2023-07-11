@@ -34,7 +34,7 @@ internal interface IAccount
     Task<User> UpdatePhone([Body(BodySerializationMethod.UrlEncoded)] IDictionary<string, object> bodyParameters, CancellationToken cancellationToken = default);
 
     [Patch("/account/prefs")]
-    Task<User> UpdatePreferences([Query] IDictionary<string, object> queryParameters = null, CancellationToken cancellationToken = default);
+    Task<User> UpdatePreferences([Body(BodySerializationMethod.UrlEncoded)] IDictionary<string, object> bodyParameters, CancellationToken cancellationToken = default);
 
     [Patch("/account/status")]
     Task<User> UpdateStatus(CancellationToken cancellationToken = default);
