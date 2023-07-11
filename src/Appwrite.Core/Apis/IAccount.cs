@@ -22,7 +22,7 @@ internal interface IAccount
     Task<Session> GetSession(string sessionId, CancellationToken cancellationToken = default);
 
     [Patch("/account/name")]
-    Task<User> UpdateName([Query] IDictionary<string, object> queryParameters = null, CancellationToken cancellationToken = default);
+    Task<User> UpdateName([Body(BodySerializationMethod.UrlEncoded)] IDictionary<string, object> bodyParameters, CancellationToken cancellationToken = default);
 
     [Patch("/account/password")]
     Task<User> UpdatePassword([Query] IDictionary<string, object> queryParameters = null, CancellationToken cancellationToken = default);
