@@ -466,4 +466,16 @@ public class Users : HttpClientProvider
     {
         await _usersApi.DeleteSessions(userId, cancellationToken);
     }
+
+    /// <summary>
+    /// Delete User
+    /// </summary>
+    /// <para>Delete a user by its unique ID, thereby releasing it's ID. Since ID is released and can be reused, all user-related resources like documents or storage files should be deleted before user deletion. If you want to keep ID reserved, use the updateStatus endpoint instead.</para>
+    /// <param name="userId">User ID.</param>
+    /// <param name="cancellationToken">Cancellation Token</param>
+    /// <returns></returns>
+    public async Task Delete(string userId, CancellationToken cancellationToken = default)
+    {
+        await _usersApi.Delete(userId, cancellationToken);
+    }
 }
