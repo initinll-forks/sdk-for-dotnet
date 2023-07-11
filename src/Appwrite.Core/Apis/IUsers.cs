@@ -74,4 +74,7 @@ internal interface IUsers
 
     [Delete("/users/{userId}/sessions/{sessionId}")]
     Task DeleteSession(string userId, string sessionId, CancellationToken cancellationToken = default);
+
+    [Delete("/users/{userId}/sessions")]
+    Task DeleteSessions(string userId, CancellationToken cancellationToken = default);
 }
