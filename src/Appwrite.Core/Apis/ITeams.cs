@@ -11,4 +11,7 @@ internal interface ITeams
 
     [Get("/teams")]
     Task<TeamList> List([Query] IDictionary<string, object> queryParameters = null, CancellationToken cancellationToken = default);
+
+    [Get("/teams/{teamId}")]
+    Task<Team> Get(string teamId, CancellationToken cancellationToken = default);
 }
