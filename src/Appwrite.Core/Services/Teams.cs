@@ -45,10 +45,38 @@ public class Teams : HttpClientProvider
         IDictionary<string, object> bodyParameters = new Dictionary<string, object>
         {
             { "teamId", teamId },
-            { "name", name },
-            { "roles", roles }
+            { "name", name }
         };
 
+        if (roles != null && roles.Count() > 0)
+        {
+            bodyParameters.Add("roles", roles);
+        }
+
         return await _teamsApi.Create(bodyParameters, cancellationToken);
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="queries"></param>
+    /// <param name="search"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    public async Task<TeamList> List(List<string>? queries = null, string? search = null, CancellationToken cancellationToken = default)
+    {
+        var queryParameters = new Dictionary<string, object>();
+
+        if (queries != null && queries.Count() > 0)
+        {
+            queryParameters.Add("queries", queries);
+        }
+
+        if (!string.IsNullOrEmpty(search))
+        {
+            queryParameters.Add("search", search);
+        }
+
+        return await _teamsApi.List(queryParameters, cancellationToken);
     }
 }
