@@ -20,4 +20,7 @@ internal interface ITeams
 
     [Delete("/teams/{teamId}")]
     Task Delete(string teamId, CancellationToken cancellationToken = default);
+
+    [Post("/teams/{teamId}/memberships")]
+    Task<Membership> CreateMembership(string teamId, [Body(BodySerializationMethod.UrlEncoded)] IDictionary<string, object> bodyParameters, CancellationToken cancellationToken = default);
 }

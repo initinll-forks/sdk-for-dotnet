@@ -129,4 +129,59 @@ public class Teams : HttpClientProvider
     {
         await _teamsApi.Delete(teamId, cancellationToken);
     }
+
+    /// <summary>
+    /// Create Team Membership
+    /// </summary>
+    /// <para>
+    /// Invite a new member to join your team. If initiated from the client SDK, 
+    /// an email with a link to join the team will be sent to the member's email 
+    /// address and an account will be created for them should they not be signed up already. 
+    /// If initiated from server-side SDKs, the new member will automatically be added to the team.
+    /// 
+    /// Use the 'url' parameter to redirect the user from the invitation email back to your app. 
+    /// When the user is redirected, use the Update Team Membership Status endpoint to allow the 
+    /// user to accept the invitation to the team.
+    /// 
+    /// Please note that to avoid a Redirect Attack the only valid redirect URL's are the once from 
+    /// domains you have set when adding your platforms in the console interface.
+    /// </para>
+    /// <param name="teamId">Team ID.</param>
+    /// <param name="email">Email of the new team member.</param>
+    /// <param name="roles">
+    /// Array of strings. 
+    /// Use this param to set the user roles in the team. 
+    /// A role can be any string. 
+    /// Learn more about roles and permissions. 
+    /// Maximum of 100 roles are allowed, each 32 characters long.
+    /// </param>
+    /// <param name="url">
+    /// URL to redirect the user back to your app from the invitation email. 
+    /// Only URLs from hostnames in your project platform list are allowed. 
+    /// This requirement helps to prevent an open redirect attack against your project API.
+    /// </param>
+    /// <param name="name">Name of the new team member. Max length: 128 chars.</param>
+    /// <param name="cancellationToken">Cancellation Token</param>
+    /// <returns>Membership</returns>
+    public async Task<Membership> CreateMembership(string teamId, 
+        string email, 
+        List<string> roles, 
+        string url, 
+        string? name, 
+        CancellationToken cancellationToken)
+    {
+        IDictionary<string, object> bodyParameters = new Dictionary<string, object>
+        {
+            { "email", email },
+            { "roles", roles },
+            { "url", url }
+        };
+
+        if (!string.IsNullOrEmpty(name))
+        {
+            bodyParameters.Add("name", name);
+        }
+
+        return await _teamsApi.CreateMembership(teamId, bodyParameters, cancellationToken);
+    }
 }
