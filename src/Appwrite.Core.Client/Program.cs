@@ -11,10 +11,24 @@ var client = new Client()
     .SetKey(apikey);
 try
 {
-    var account = new Account(client);
-    var test = await account.UpdatePassword("test");
+    var teams = new Teams(client);
+
+    CancellationTokenSource newSource = new CancellationTokenSource();
+    newSource.Cancel();
+
+    var newTeam = await teams.Create("TestTeam-123", "test-team", null, newSource.Token);
+
+    Console.WriteLine("Done !");
+}
+catch (TaskCanceledException ex)
+{
+    Console.WriteLine($"TaskCanceledException - {ex.Message}");
 }
 catch (AppwriteException ex)
+{
+    Console.WriteLine($"AppwriteException - {ex.Message}");
+}
+catch (Exception ex)
 {
     Console.WriteLine($"Exception - {ex.Message}");
 }
