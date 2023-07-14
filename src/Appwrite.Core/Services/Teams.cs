@@ -295,7 +295,7 @@ public class Teams : HttpClientProvider
             { "secret", secret }
         };
 
-        return await _teamsApi.UpdateMembershipRoles(teamId, membershipId, bodyParameters, cancellationToken);
+        return await _teamsApi.UpdateMembershipStatus(teamId, membershipId, bodyParameters, cancellationToken);
     }
 
     /// <summary>

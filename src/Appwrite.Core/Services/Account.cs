@@ -127,7 +127,7 @@ public class Account : HttpClientProvider
             bodyParameters.Add("oldPassword", oldPassword);
         }
 
-        return await _accountApi.UpdateName(bodyParameters, cancellationToken);
+        return await _accountApi.UpdatePassword(bodyParameters, cancellationToken);
     }
 
     /// <summary>
@@ -345,7 +345,7 @@ public class Account : HttpClientProvider
             { "url", url }
         };
 
-        return await _accountApi.CreateRecovery(bodyParameters, cancellationToken);
+        return await _accountApi.CreateVerification(bodyParameters, cancellationToken);
     }
 
     /// <summary>
