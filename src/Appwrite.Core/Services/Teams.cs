@@ -184,4 +184,40 @@ public class Teams : HttpClientProvider
 
         return await _teamsApi.CreateMembership(teamId, bodyParameters, cancellationToken);
     }
+
+    /// <summary>
+    /// List Team Memberships
+    /// </summary>
+    /// <para>
+    /// Use this endpoint to list a team's members using the team's ID. 
+    /// All team members have read access to this endpoint.
+    /// </para>
+    /// <param name="teamId">Team ID.</param>
+    /// <param name="queries">
+    /// Array of query strings generated using the Query class provided by the SDK. 
+    /// Learn more about queries. Maximum of 100 queries are allowed, each 4096 characters long. 
+    /// You may filter on the following attributes: userId, teamId, invited, joined, confirm
+    /// </param>
+    /// <param name="search">Search term to filter your list results. Max length: 256 chars.</param>
+    /// <param name="cancellationToken">Cancellation Token</param>
+    /// <returns>MembershipList</returns>
+    public async Task<MembershipList> ListMemberships(string teamId, 
+        List<string>? queries, 
+        string? search, 
+        CancellationToken cancellationToken)
+    {
+        var queryParameters = new Dictionary<string, object>();
+
+        if (queries != null && queries.Count() > 0)
+        {
+            queryParameters.Add("queries", queries);
+        }
+
+        if (!string.IsNullOrEmpty(search))
+        {
+            queryParameters.Add("search", search);
+        }
+
+        return await _teamsApi.ListMemberships(teamId, queryParameters, cancellationToken);
+    }
 }

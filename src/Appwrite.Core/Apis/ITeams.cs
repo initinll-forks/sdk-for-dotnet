@@ -23,4 +23,7 @@ internal interface ITeams
 
     [Post("/teams/{teamId}/memberships")]
     Task<Membership> CreateMembership(string teamId, [Body(BodySerializationMethod.UrlEncoded)] IDictionary<string, object> bodyParameters, CancellationToken cancellationToken = default);
+
+    [Get("/teams/{teamId}/memberships")]
+    Task<MembershipList> ListMemberships(string teamId, [Query] IDictionary<string, object> queryParameters = null, CancellationToken cancellationToken = default);
 }
