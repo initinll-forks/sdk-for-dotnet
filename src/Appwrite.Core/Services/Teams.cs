@@ -297,4 +297,21 @@ public class Teams : HttpClientProvider
 
         return await _teamsApi.UpdateMembershipRoles(teamId, membershipId, bodyParameters, cancellationToken);
     }
+
+    /// <summary>
+    /// Delete Team Membership
+    /// </summary>
+    /// <para>
+    /// This endpoint allows a user to leave a team or for a team owner to delete 
+    /// the membership of any other team member. You can also use this endpoint to 
+    /// delete a user membership even if it is not accepted.
+    /// </para>
+    /// <param name="teamId">Team ID.</param>
+    /// <param name="membershipId">Membership ID.</param>
+    /// <param name="cancellationToken">Cancellation Token</param>
+    /// <returns></returns>
+    public async Task DeleteMembership(string teamId,string membershipId, CancellationToken cancellationToken)
+    {
+        await _teamsApi.DeleteMembership(teamId, membershipId, cancellationToken);
+    }
 }

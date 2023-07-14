@@ -35,4 +35,7 @@ internal interface ITeams
 
     [Patch("/teams/{teamId}/memberships/{membershipId}/status")]
     Task<Membership> UpdateMembershipStatus(string teamId, string membershipId, [Body(BodySerializationMethod.UrlEncoded)] IDictionary<string, object> bodyParameters, CancellationToken cancellationToken);
+
+    [Delete("/teams/{teamId}/memberships/{membershipId}")]
+    Task DeleteMembership(string teamId, string membershipId, CancellationToken cancellationToken);
 }
