@@ -14,4 +14,7 @@ internal interface ITeams
 
     [Get("/teams/{teamId}")]
     Task<Team> Get(string teamId, CancellationToken cancellationToken = default);
+
+    [Put("/teams/{teamId}")]
+    Task<Team> Update(string teamId, [Body(BodySerializationMethod.UrlEncoded)] IDictionary<string, object> bodyParameters, CancellationToken cancellationToken = default);
 }

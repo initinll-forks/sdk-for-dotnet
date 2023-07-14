@@ -97,6 +97,24 @@ public class Teams : HttpClientProvider
     /// <returns>Team</returns>
     public async Task<Team> Get(string teamId, CancellationToken cancellationToken = default)
     {
-        return await _teamsApi.Get(teamId,cancellationToken);
+        return await _teamsApi.Get(teamId, cancellationToken);
+    }
+
+    /// <summary>
+    /// Update Team
+    /// </summary>
+    /// <para>Update a team using its ID. Only members with the owner role can update the team.</para>
+    /// <param name="teamId">Team ID.</param>
+    /// <param name="name">New team name. Max length: 128 chars.</param>
+    /// <param name="cancellationToken">Cancellation Token</param>
+    /// <returns>Team</returns>
+    public async Task<Team> Update(string teamId, string name, CancellationToken cancellationToken = default)
+    {
+        IDictionary<string, object> bodyParameters = new Dictionary<string, object>
+        {
+            { "name", name }
+        };
+
+        return await _teamsApi.Update(teamId, bodyParameters, cancellationToken);
     }
 }
