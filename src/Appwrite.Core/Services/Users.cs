@@ -2,6 +2,8 @@
 using Appwrite.Core.Helpers;
 using Appwrite.Core.Models;
 
+using System.Xml.Linq;
+
 namespace Appwrite.Core.Services;
 
 public class Users : HttpClientProvider
@@ -26,16 +28,37 @@ public class Users : HttpClientProvider
     /// <param name="name">User name. Max length: 128 chars.</param>
     /// <param name="cancellationToken">Cancellation Token</param>
     /// <returns>User</returns>
-    public async Task<User> Create(string userId, string? email = null, string? phone = null, string? password = null, string? name = null, CancellationToken cancellationToken = default)
+    public async Task<User> Create(string userId, 
+        string? email = null, 
+        string? phone = null, 
+        string? password = null, 
+        string? name = null, 
+        CancellationToken cancellationToken = default)
     {
         IDictionary<string, object> bodyParameters = new Dictionary<string, object>
         {
-            { "userId", userId },
-            { "email", email },
-            { "phone", phone },
-            { "password", password },
-            { "name", name }
+            { "userId", userId }
         };
+
+        if (!string.IsNullOrEmpty(email))
+        {
+            bodyParameters.Add("email", email);
+        }
+
+        if (!string.IsNullOrEmpty(phone))
+        {
+            bodyParameters.Add("phone", phone);
+        }
+
+        if (!string.IsNullOrEmpty(password))
+        {
+            bodyParameters.Add("password", password);
+        }
+
+        if (!string.IsNullOrEmpty(name))
+        {
+            bodyParameters.Add("name", name);
+        }
 
         return await _usersApi.Create(bodyParameters, cancellationToken);
     }
@@ -59,15 +82,23 @@ public class Users : HttpClientProvider
     /// <param name="name">User name. Max length: 128 chars.</param>
     /// <param name="cancellationToken">Cancellation Token</param>
     /// <returns>User</returns>
-    public async Task<User> CreateBcryptUser(string userId, string email, string password, string? name = null, CancellationToken cancellationToken = default)
+    public async Task<User> CreateBcryptUser(string userId, 
+        string email, 
+        string password, 
+        string? name = null, 
+        CancellationToken cancellationToken = default)
     {
         IDictionary<string, object> bodyParameters = new Dictionary<string, object>
         {
             { "userId", userId },
             { "email", email },
-            { "password", password },
-            { "name", name }
+            { "password", password }
         };
+
+        if (!string.IsNullOrEmpty(name))
+        {
+            bodyParameters.Add("name", name);
+        }
 
         return await _usersApi.CreateBcryptUser(bodyParameters, cancellationToken);
     }
@@ -91,15 +122,23 @@ public class Users : HttpClientProvider
     /// <param name="name">User name. Max length: 128 chars.</param>
     /// <param name="cancellationToken">Cancellation Token</param>
     /// <returns>User</returns>
-    public async Task<User> CreateMD5User(string userId, string email, string password, string? name = null, CancellationToken cancellationToken = default)
+    public async Task<User> CreateMD5User(string userId, 
+        string email, 
+        string password, 
+        string? name = null,
+        CancellationToken cancellationToken = default)
     {
         IDictionary<string, object> bodyParameters = new Dictionary<string, object>
         {
             { "userId", userId },
             { "email", email },
-            { "password", password },
-            { "name", name }
+            { "password", password }
         };
+
+        if (!string.IsNullOrEmpty(name))
+        {
+            bodyParameters.Add("name", name);
+        }
 
         return await _usersApi.CreateMD5User(bodyParameters, cancellationToken);
     }
@@ -123,15 +162,23 @@ public class Users : HttpClientProvider
     /// <param name="name">User name. Max length: 128 chars.</param>
     /// <param name="cancellationToken">Cancellation Token</param>
     /// <returns>User</returns>
-    public async Task<User> CreateArgon2User(string userId, string email, string password, string? name = null, CancellationToken cancellationToken = default)
+    public async Task<User> CreateArgon2User(string userId, 
+        string email, 
+        string password, 
+        string? name = null, 
+        CancellationToken cancellationToken = default)
     {
         IDictionary<string, object> bodyParameters = new Dictionary<string, object>
         {
             { "userId", userId },
             { "email", email },
-            { "password", password },
-            { "name", name }
+            { "password", password }
         };
+
+        if (!string.IsNullOrEmpty(name))
+        {
+            bodyParameters.Add("name", name);
+        }
 
         return await _usersApi.CreateArgon2User(bodyParameters, cancellationToken);
     }
@@ -160,16 +207,29 @@ public class Users : HttpClientProvider
     /// <param name="name">User name. Max length: 128 chars.</param>
     /// <param name="cancellationToken">Cancellation Token</param>
     /// <returns>User</returns>
-    public async Task<User> CreateSHAUser(string userId, string email, string password, string? passwordVersion = null, string? name = null, CancellationToken cancellationToken = default)
+    public async Task<User> CreateSHAUser(string userId, 
+        string email, 
+        string password, 
+        string? passwordVersion = null, 
+        string? name = null, 
+        CancellationToken cancellationToken = default)
     {
         IDictionary<string, object> bodyParameters = new Dictionary<string, object>
         {
             { "userId", userId },
             { "email", email },
-            { "password", password },
-            { "passwordVersion", passwordVersion },
-            { "name", name }
+            { "password", password }
         };
+
+        if (!string.IsNullOrEmpty(passwordVersion))
+        {
+            bodyParameters.Add("passwordVersion", passwordVersion);
+        }
+
+        if (!string.IsNullOrEmpty(name))
+        {
+            bodyParameters.Add("name", name);
+        }
 
         return await _usersApi.CreateSHAUser(bodyParameters, cancellationToken);
     }
@@ -193,15 +253,23 @@ public class Users : HttpClientProvider
     /// <param name="name">User name. Max length: 128 chars.</param>
     /// <param name="cancellationToken">Cancellation Token</param>
     /// <returns>User</returns>
-    public async Task<User> CreatePHPassUser(string userId, string email, string password, string? name = null, CancellationToken cancellationToken = default)
+    public async Task<User> CreatePHPassUser(string userId, 
+        string email, 
+        string password, 
+        string? name = null, 
+        CancellationToken cancellationToken = default)
     {
         IDictionary<string, object> bodyParameters = new Dictionary<string, object>
         {
             { "userId", userId },
             { "email", email },
-            { "password", password },
-            { "name", name }
+            { "password", password }
         };
+
+        if (!string.IsNullOrEmpty(name))
+        {
+            bodyParameters.Add("name", name);
+        }
 
         return await _usersApi.CreatePHPassUser(bodyParameters, cancellationToken);
     }
@@ -230,7 +298,16 @@ public class Users : HttpClientProvider
     /// <param name="name">User name. Max length: 128 chars.</param>
     /// <param name="cancellationToken">Cancellation Token</param>
     /// <returns>User</returns>
-    public async Task<User> CreateScryptUser(string userId, string email, string password, string passwordSalt, string passwordCpu, string passwordMemory, string passwordParallel, string passwordLength, string? name = null, CancellationToken cancellationToken = default)
+    public async Task<User> CreateScryptUser(string userId, 
+        string email, 
+        string password, 
+        string passwordSalt, 
+        string passwordCpu, 
+        string passwordMemory, 
+        string passwordParallel, 
+        string passwordLength, 
+        string? name = null, 
+        CancellationToken cancellationToken = default)
     {
         IDictionary<string, object> bodyParameters = new Dictionary<string, object>
         {
@@ -241,9 +318,13 @@ public class Users : HttpClientProvider
             { "passwordCpu", passwordCpu },
             { "passwordMemory", passwordMemory },
             { "passwordParallel", passwordParallel },
-            { "passwordLength", passwordLength },
-            { "name", name }
+            { "passwordLength", passwordLength }
         };
+
+        if (!string.IsNullOrEmpty(name))
+        {
+            bodyParameters.Add("name", name);
+        }
 
         return await _usersApi.CreateScryptUser(bodyParameters, cancellationToken);
     }
@@ -270,7 +351,14 @@ public class Users : HttpClientProvider
     /// <param name="name">User name. Max length: 128 chars.</param>
     /// <param name="cancellationToken">Cancellation Token</param>
     /// <returns>User</returns>
-    public async Task<User> CreateScryptModifiedUser(string userId, string email, string password, string passwordSalt, string passwordSaltSeparator, string passwordSignerKey, string? name = null, CancellationToken cancellationToken = default)
+    public async Task<User> CreateScryptModifiedUser(string userId, 
+        string email, 
+        string password, 
+        string passwordSalt, 
+        string passwordSaltSeparator, 
+        string passwordSignerKey, 
+        string? name = null, 
+        CancellationToken cancellationToken = default)
     {
         IDictionary<string, object> bodyParameters = new Dictionary<string, object>
         {
@@ -279,9 +367,13 @@ public class Users : HttpClientProvider
             { "password", password },
             { "passwordSalt", passwordSalt },
             { "passwordSaltSeparator", passwordSaltSeparator },
-            { "passwordSignerKey", passwordSignerKey },
-            { "name", name }
+            { "passwordSignerKey", passwordSignerKey }
         };
+
+        if (!string.IsNullOrEmpty(name))
+        {
+            bodyParameters.Add("name", name);
+        }
 
         return await _usersApi.CreateScryptModifiedUser(bodyParameters, cancellationToken);
     }
@@ -302,13 +394,21 @@ public class Users : HttpClientProvider
     /// <param name="search">Search term to filter your list results. Max length: 256 chars.</param>
     /// <param name="cancellationToken">Cancellation Token</param>
     /// <returns>UserList</returns>
-    public async Task<UserList> List(List<string>? queries = null, string? search = null, CancellationToken cancellationToken = default)
+    public async Task<UserList> List(List<string>? queries = null, 
+        string? search = null, 
+        CancellationToken cancellationToken = default)
     {
-        IDictionary<string, object> queryParameters = new Dictionary<string, object>
+        IDictionary<string, object> queryParameters = new Dictionary<string, object>();
+
+        if (queries != null && queries.Count() > 0)
         {
-            { "queries", queries },
-            { "search", search }
-        };
+            queryParameters.Add("queries", queries);
+        }
+
+        if (!string.IsNullOrEmpty(search))
+        {
+            queryParameters.Add("search", search);
+        }
 
         return await _usersApi.List(queryParameters, cancellationToken);
     }
