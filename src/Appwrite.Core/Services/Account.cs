@@ -61,14 +61,11 @@ public class Account : HttpClientProvider
     /// <returns>LogList</returns>
     public async Task<LogList> ListLogs(List<string>? queries = null, CancellationToken cancellationToken = default)
     {
-        IDictionary<string, object> queryParameters = null;
+        IDictionary<string, object> queryParameters = new Dictionary<string, object>();
 
-        if (queries != null)
+        if (queries != null && queries.Count() > 0)
         {
-            queryParameters = new Dictionary<string, object>
-            {
-                { "queries", queries }
-            };
+            queryParameters.Add("queries", queries);
         }
 
         return await _accountApi.ListLogs(queryParameters, cancellationToken);
@@ -122,9 +119,13 @@ public class Account : HttpClientProvider
     {
         IDictionary<string, object> bodyParameters = new Dictionary<string, object>
         {
-            { "password", password },
-            { "oldPassword", oldPassword }
+            { "password", password }
         };
+
+        if (!string.IsNullOrEmpty(oldPassword))
+        {
+            bodyParameters.Add("oldPassword", oldPassword);
+        }
 
         return await _accountApi.UpdateName(bodyParameters, cancellationToken);
     }
