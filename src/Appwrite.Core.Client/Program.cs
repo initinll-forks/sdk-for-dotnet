@@ -14,7 +14,7 @@ try
     var account = new Account(client);
     var test = await account.UpdatePassword("test");
 }
-catch (Exception ex)
+catch (AppwriteException ex)
 {
     Console.WriteLine($"Exception - {ex.Message}");
 }
