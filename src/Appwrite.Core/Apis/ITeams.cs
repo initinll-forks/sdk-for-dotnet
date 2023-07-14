@@ -26,4 +26,7 @@ internal interface ITeams
 
     [Get("/teams/{teamId}/memberships")]
     Task<MembershipList> ListMemberships(string teamId, [Query] IDictionary<string, object> queryParameters = null, CancellationToken cancellationToken = default);
+
+    [Get("/teams/{teamId}/memberships/{membershipId}")]
+    Task<Membership> GetMembership(string teamId, string membershipId, CancellationToken cancellationToken);
 }

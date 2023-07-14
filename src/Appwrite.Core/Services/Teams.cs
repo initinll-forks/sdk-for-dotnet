@@ -220,4 +220,20 @@ public class Teams : HttpClientProvider
 
         return await _teamsApi.ListMemberships(teamId, queryParameters, cancellationToken);
     }
+
+    /// <summary>
+    /// Get Team Membership
+    /// </summary>
+    /// <para>
+    /// Get a team member by the membership unique id. 
+    /// All team members have read access for this resource.
+    /// </para>
+    /// <param name="teamId">Team ID.</param>
+    /// <param name="membershipId">Membership ID.</param>
+    /// <param name="cancellationToken">Cancellation Token</param>
+    /// <returns>Membership</returns>
+    public async Task<Membership> GetMembership(string teamId, string membershipId, CancellationToken cancellationToken)
+    {
+        return await _teamsApi.GetMembership(teamId, membershipId, cancellationToken);
+    }
 }
