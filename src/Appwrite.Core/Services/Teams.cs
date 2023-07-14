@@ -117,4 +117,16 @@ public class Teams : HttpClientProvider
 
         return await _teamsApi.Update(teamId, bodyParameters, cancellationToken);
     }
+
+    /// <summary>
+    /// Delete Team
+    /// </summary>
+    /// <para>Delete a team using its ID. Only team members with the owner role can delete the team.</para>
+    /// <param name="teamId">Team ID.</param>
+    /// <param name="cancellationToken">Cancellation Token</param>
+    /// <returns></returns>
+    public async Task Delete(string teamId, CancellationToken cancellationToken = default)
+    {
+        await _teamsApi.Delete(teamId, cancellationToken);
+    }
 }
