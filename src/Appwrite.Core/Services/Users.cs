@@ -43,8 +43,17 @@ public class Users : HttpClientProvider
     /// <summary>
     /// Create User with Bcrypt Password
     /// </summary>
-    /// <para>Create a new user. Password provided must be hashed with the Bcrypt algorithm. Use the Create endpoint to create users with a plain text password.</para>
-    /// <param name="userId">User ID. Choose your own unique ID or pass the string ID.unique() to auto generate it. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.</param>
+    /// <para>
+    /// Create a new user. 
+    /// Password provided must be hashed with the Bcrypt algorithm. 
+    /// Use the Create endpoint to create users with a plain text password.
+    /// </para>
+    /// <param name="userId">
+    /// User ID. 
+    /// Choose your own unique ID or pass the string ID.unique() to auto generate it. 
+    /// Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. 
+    /// Can't start with a special char. Max length is 36 chars.
+    /// </param>
     /// <param name="email">User email.</param>
     /// <param name="password">User password hashed using Bcrypt.</param>
     /// <param name="name">User name. Max length: 128 chars.</param>
@@ -66,8 +75,17 @@ public class Users : HttpClientProvider
     /// <summary>
     /// Create User with MD5 Password
     /// </summary>
-    /// <para>Create a new user. Password provided must be hashed with the MD5 algorithm. Use the Create endpoint to create users with a plain text password.</para>
-    /// <param name="userId">User ID. Choose your own unique ID or pass the string ID.unique() to auto generate it. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.</param>
+    /// <para>
+    /// Create a new user. 
+    /// Password provided must be hashed with the MD5 algorithm. 
+    /// Use the Create endpoint to create users with a plain text password.
+    /// </para>
+    /// <param name="userId">
+    /// User ID. 
+    /// Choose your own unique ID or pass the string ID.unique() to auto generate it. 
+    /// Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. 
+    /// Can't start with a special char. Max length is 36 chars.
+    /// </param>
     /// <param name="email">User email.</param>
     /// <param name="password">User password hashed using MD5.</param>
     /// <param name="name">User name. Max length: 128 chars.</param>
@@ -89,8 +107,17 @@ public class Users : HttpClientProvider
     /// <summary>
     /// Create User with Argon2 Password
     /// </summary>
-    /// <para>Create a new user. Password provided must be hashed with the Argon2 algorithm. Use the Create endpoint to create users with a plain text password.</para>
-    /// <param name="userId">User ID. Choose your own unique ID or pass the string ID.unique() to auto generate it. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.</param>
+    /// <para>
+    /// Create a new user. 
+    /// Password provided must be hashed with the Argon2 algorithm. 
+    /// Use the Create endpoint to create users with a plain text password.
+    /// </para>
+    /// <param name="userId">
+    /// User ID. 
+    /// Choose your own unique ID or pass the string ID.unique() to auto generate it. 
+    /// Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. 
+    /// Can't start with a special char. Max length is 36 chars.
+    /// </param>
     /// <param name="email">User email.</param>
     /// <param name="password">User password hashed using Argon2.</param>
     /// <param name="name">User name. Max length: 128 chars.</param>
@@ -112,11 +139,24 @@ public class Users : HttpClientProvider
     /// <summary>
     /// Create User with SHA Password
     /// </summary>
-    /// <para>Create a new user. Password provided must be hashed with the SHA algorithm. Use the Create endpoint to create users with a plain text password.</para>
-    /// <param name="userId">User ID. Choose your own unique ID or pass the string ID.unique() to auto generate it. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.</param>
+    /// <para>
+    /// Create a new user. 
+    /// Password provided must be hashed with the SHA algorithm. 
+    /// Use the Create endpoint to create users with a plain text password.
+    /// </para>
+    /// <param name="userId">
+    /// User ID. 
+    /// Choose your own unique ID or pass the string ID.unique() to auto generate it. 
+    /// Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. 
+    /// Can't start with a special char. Max length is 36 chars.
+    /// </param>
     /// <param name="email">User email.</param>
     /// <param name="password">User password hashed using SHA.</param>
-    /// <param name="passwordVersion">Optional SHA version used to hash password. Allowed values are: 'sha1', 'sha224', 'sha256', 'sha384', 'sha512/224', 'sha512/256', 'sha512', 'sha3-224', 'sha3-256', 'sha3-384', 'sha3-512'</param>
+    /// <param name="passwordVersion">
+    /// Optional SHA version used to hash password. 
+    /// Allowed values are: 'sha1', 'sha224', 'sha256', 'sha384', 'sha512/224', 
+    /// 'sha512/256', 'sha512', 'sha3-224', 'sha3-256', 'sha3-384', 'sha3-512'
+    /// </param>
     /// <param name="name">User name. Max length: 128 chars.</param>
     /// <param name="cancellationToken">Cancellation Token</param>
     /// <returns>User</returns>
@@ -137,8 +177,17 @@ public class Users : HttpClientProvider
     /// <summary>
     /// Create User with PHPass Password
     /// </summary>
-    /// <para>Create a new user. Password provided must be hashed with the PHPass algorithm. Use the Create endpoint to create users with a plain text password.</para>
-    /// <param name="userId">User ID. Choose your own unique ID or pass the string ID.unique()to auto generate it. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.</param>
+    /// <para>
+    /// Create a new user. 
+    /// Password provided must be hashed with the PHPass algorithm. 
+    /// Use the Create endpoint to create users with a plain text password.
+    /// </para>
+    /// <param name="userId">
+    /// User ID. 
+    /// Choose your own unique ID or pass the string ID.unique()to auto generate it. 
+    /// Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. 
+    /// Can't start with a special char. Max length is 36 chars.
+    /// </param>
     /// <param name="email">User email.</param>
     /// <param name="password">User password hashed using PHPass.</param>
     /// <param name="name">User name. Max length: 128 chars.</param>
@@ -160,8 +209,17 @@ public class Users : HttpClientProvider
     /// <summary>
     /// Create User with Scrypt Password
     /// </summary>
-    /// <para>Create a new user. Password provided must be hashed with the Scrypt algorithm. Use the Create endpoint to create users with a plain text password.</para>
-    /// <param name="userId">User ID. Choose your own unique ID or pass the string ID.unique() to auto generate it. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.</param>
+    /// <para>
+    /// Create a new user. 
+    /// Password provided must be hashed with the Scrypt algorithm. 
+    /// Use the Create endpoint to create users with a plain text password.
+    /// </para>
+    /// <param name="userId">
+    /// User ID. 
+    /// Choose your own unique ID or pass the string ID.unique() to auto generate it. 
+    /// Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. 
+    /// Can't start with a special char. Max length is 36 chars.
+    /// </param>
     /// <param name="email">User email.</param>
     /// <param name="password">User password hashed using Scrypt.</param>
     /// <param name="passwordSalt">Optional salt used to hash password.</param>
@@ -193,8 +251,17 @@ public class Users : HttpClientProvider
     /// <summary>
     /// Create User with Scrypt Modified Password
     /// </summary>
-    /// <para>Create a new user. Password provided must be hashed with the Scrypt Modified algorithm. Use the Create endpoint to create users with a plain text password.</para>
-    /// <param name="userId">User ID. Choose your own unique ID or pass the string ID.unique() to auto generate it. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.</param>
+    /// <para>
+    /// Create a new user. 
+    /// Password provided must be hashed with the Scrypt Modified algorithm. 
+    /// Use the Create endpoint to create users with a plain text password.
+    /// </para>
+    /// <param name="userId">
+    /// User ID. 
+    /// Choose your own unique ID or pass the string ID.unique() to auto generate it. 
+    /// Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. 
+    /// Can't start with a special char. Max length is 36 chars.
+    /// </param>
     /// <param name="email">User email.</param>
     /// <param name="password">User password hashed using Scrypt Modified.</param>
     /// <param name="passwordSalt">Salt used to hash password.</param>
@@ -222,8 +289,16 @@ public class Users : HttpClientProvider
     /// <summary>
     /// List Users
     /// </summary>
-    /// <para>Get a list of all the project's users. You can use the query params to filter your results.</para>
-    /// <param name="queries">Array of query strings. Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: name, email, phone, status, passwordUpdate, registration, emailVerification, phoneVerification.</param>
+    /// <para>
+    /// Get a list of all the project's users. 
+    /// You can use the query params to filter your results.
+    /// </para>
+    /// <param name="queries">
+    /// Array of query strings. 
+    /// Maximum of 100 queries are allowed, each 4096 characters long. 
+    /// You may filter on the following attributes: name, email, phone, status, 
+    /// passwordUpdate, registration, emailVerification, phoneVerification.
+    /// </param>
     /// <param name="search">Search term to filter your list results. Max length: 256 chars.</param>
     /// <param name="cancellationToken">Cancellation Token</param>
     /// <returns>UserList</returns>
@@ -301,7 +376,10 @@ public class Users : HttpClientProvider
     /// <summary>
     /// Update User Status
     /// </summary>
-    /// <para>Update the user status by its unique ID. Use this endpoint as an alternative to deleting a user if you want to keep user's ID reserved.</para>
+    /// <para>
+    /// Update the user status by its unique ID. 
+    /// Use this endpoint as an alternative to deleting a user if you want to keep user's ID reserved.
+    /// </para>
     /// <param name="userId">User ID.</param>
     /// <param name="status">User Status. To activate the user pass true and to block the user pass false.</param>
     /// <param name="cancellationToken">Cancellation Token</param>
@@ -427,7 +505,11 @@ public class Users : HttpClientProvider
     /// <summary>
     /// Update User Preferences
     /// </summary>
-    /// <para>Update the user preferences by its unique ID. The object you pass is stored as is, and replaces any previous value. The maximum allowed prefs size is 64kB and throws error if exceeded.</para>
+    /// <para>
+    /// Update the user preferences by its unique ID. 
+    /// The object you pass is stored as is, and replaces any previous value. 
+    /// The maximum allowed prefs size is 64kB and throws error if exceeded.
+    /// </para>
     /// <param name="userId">User ID.</param>
     /// <param name="prefs">Prefs key-value JSON object.</param>
     /// <param name="cancellationToken">Cancellation Token</param>
@@ -470,7 +552,12 @@ public class Users : HttpClientProvider
     /// <summary>
     /// Delete User
     /// </summary>
-    /// <para>Delete a user by its unique ID, thereby releasing it's ID. Since ID is released and can be reused, all user-related resources like documents or storage files should be deleted before user deletion. If you want to keep ID reserved, use the updateStatus endpoint instead.</para>
+    /// <para>
+    /// Delete a user by its unique ID, thereby releasing it's ID. 
+    /// Since ID is released and can be reused, all user-related resources 
+    /// like documents or storage files should be deleted before user deletion. 
+    /// If you want to keep ID reserved, use the updateStatus endpoint instead.
+    /// </para>
     /// <param name="userId">User ID.</param>
     /// <param name="cancellationToken">Cancellation Token</param>
     /// <returns></returns>
