@@ -267,4 +267,34 @@ public class Teams : HttpClientProvider
 
         return await _teamsApi.UpdateMembershipRoles(teamId, membershipId, bodyParameters, cancellationToken);
     }
+
+    /// <summary>
+    /// Update Team Membership Status
+    /// </summary>
+    /// <para>
+    /// Use this endpoint to allow a user to accept an invitation to join a team after 
+    /// being redirected back to your app from the invitation email received by the user.
+    /// 
+    /// If the request is successful, a session for the user is automatically created.
+    /// </para>
+    /// <param name="teamId">Team ID.</param>
+    /// <param name="membershipId">Membership ID.</param>
+    /// <param name="userId">User ID.</param>
+    /// <param name="secret">Secret key.</param>
+    /// <param name="cancellationToken">Cancellation Token</param>
+    /// <returns>Membership</returns>
+    public async Task<Membership> UpdateMembershipStatus(string teamId,
+        string membershipId,
+        string userId,
+        string secret,
+        CancellationToken cancellationToken)
+    {
+        IDictionary<string, object> bodyParameters = new Dictionary<string, object>
+        {
+            { "userId", userId },
+            { "secret", secret }
+        };
+
+        return await _teamsApi.UpdateMembershipRoles(teamId, membershipId, bodyParameters, cancellationToken);
+    }
 }

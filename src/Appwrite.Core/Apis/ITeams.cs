@@ -32,4 +32,7 @@ internal interface ITeams
 
     [Patch("/teams/{teamId}/memberships/{membershipId}")]
     Task<Membership> UpdateMembershipRoles(string teamId, string membershipId, [Body(BodySerializationMethod.UrlEncoded)] IDictionary<string, object> bodyParameters, CancellationToken cancellationToken);
+
+    [Patch("/teams/{teamId}/memberships/{membershipId}/status")]
+    Task<Membership> UpdateMembershipStatus(string teamId, string membershipId, [Body(BodySerializationMethod.UrlEncoded)] IDictionary<string, object> bodyParameters, CancellationToken cancellationToken);
 }
