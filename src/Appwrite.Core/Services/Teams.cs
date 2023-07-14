@@ -236,4 +236,35 @@ public class Teams : HttpClientProvider
     {
         return await _teamsApi.GetMembership(teamId, membershipId, cancellationToken);
     }
+
+    /// <summary>
+    /// Update Membership Roles
+    /// </summary>
+    /// <para>
+    /// Modify the roles of a team member. 
+    /// Only team members with the owner role have access to this endpoint. 
+    /// Learn more about roles and permissions.
+    /// </para>
+    /// <param name="teamId">Team ID.</param>
+    /// <param name="membershipId">Membership ID.</param>
+    /// <param name="roles">
+    /// An array of strings. 
+    /// Use this param to set the user's roles in the team. 
+    /// A role can be any string. Learn more about roles and permissions. 
+    /// Maximum of 100 roles are allowed, each 32 characters long.
+    /// </param>
+    /// <param name="cancellationToken">Cancellation Token</param>
+    /// <returns></returns>
+    public async Task<Membership> UpdateMembershipRoles(string teamId, 
+        string membershipId, 
+        List<string> roles, 
+        CancellationToken cancellationToken)
+    {
+        IDictionary<string, object> bodyParameters = new Dictionary<string, object>
+        {
+            { "roles", roles }
+        };
+
+        return await _teamsApi.UpdateMembershipRoles(teamId, membershipId, bodyParameters, cancellationToken);
+    }
 }

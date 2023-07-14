@@ -29,4 +29,7 @@ internal interface ITeams
 
     [Get("/teams/{teamId}/memberships/{membershipId}")]
     Task<Membership> GetMembership(string teamId, string membershipId, CancellationToken cancellationToken);
+
+    [Patch("/teams/{teamId}/memberships/{membershipId}")]
+    Task<Membership> UpdateMembershipRoles(string teamId, string membershipId, [Body(BodySerializationMethod.UrlEncoded)] IDictionary<string, object> bodyParameters, CancellationToken cancellationToken);
 }
