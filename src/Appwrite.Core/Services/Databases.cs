@@ -2,8 +2,6 @@
 using Appwrite.Core.Helpers;
 using Appwrite.Core.Models;
 
-using System.Threading.Tasks;
-
 namespace Appwrite.Core.Services;
 
 public class Databases : HttpClientProvider
@@ -90,5 +88,23 @@ public class Databases : HttpClientProvider
     public async Task<Database> Get(string databaseId, CancellationToken cancellationToken = default)
     {
         return await _databasesApi.Get(databaseId, cancellationToken);
+    }
+
+    /// <summary>
+    /// Update Database
+    /// </summary>
+    /// <para>Update a database by its unique ID.</para>
+    /// <param name="databaseId">Database ID.</param>
+    /// <param name="name">Collection name. Max length: 128 chars.</param>
+    /// <param name="cancellationToken">Cancellation Token</param>
+    /// <returns>Database</returns>
+    public async Task<Database> Update(string databaseId, string name, CancellationToken cancellationToken = default)
+    {
+        IDictionary<string, object> bodyParameters = new Dictionary<string, object>
+        {
+            { "name", name }
+        };
+
+        return await _databasesApi.Update(databaseId, bodyParameters, cancellationToken);
     }
 }
