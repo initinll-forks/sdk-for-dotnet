@@ -2,8 +2,6 @@
 using Appwrite.Core.Helpers;
 using Appwrite.Core.Models;
 
-using Refit;
-
 namespace Appwrite.Core.Services;
 
 public class Databases : HttpClientProvider
@@ -150,10 +148,10 @@ public class Databases : HttpClientProvider
     /// </param>
     /// <param name="cancellationToken">Cancellation Token</param>
     /// <returns>Collection</returns>
-    public async Task<Collection> CreateCollection(string databaseId, 
-        string collectionId, 
-        string name, 
-        IEnumerable<string>? permissions = null, 
+    public async Task<Collection> CreateCollection(string databaseId,
+        string collectionId,
+        string name,
+        IEnumerable<string>? permissions = null,
         bool? documentSecurity = null,
         CancellationToken cancellationToken = default)
     {
@@ -192,9 +190,9 @@ public class Databases : HttpClientProvider
     /// <param name="search">Search term to filter your list results. Max length: 256 chars.</param>
     /// <param name="cancellationToken">Cancellation Token</param>
     /// <returns>CollectionList</returns>
-    public async Task<CollectionList> ListCollections(string databaseId, 
+    public async Task<CollectionList> ListCollections(string databaseId,
         IEnumerable<string>? queries = null,
-        string? search = null, 
+        string? search = null,
         CancellationToken cancellationToken = default)
     {
         IDictionary<string, object> queryParameters = null;
@@ -215,5 +213,23 @@ public class Databases : HttpClientProvider
         }
 
         return await _databasesApi.ListCollections(databaseId, queryParameters, cancellationToken);
+    }
+
+    /// <summary>
+    /// Get Collection
+    /// </summary>
+    /// <para>
+    /// Get a collection by its unique ID. 
+    /// This endpoint response returns a JSON object with the collection metadata.
+    /// </para>
+    /// <param name="databaseId">Database ID.</param>
+    /// <param name="collectionId">Collection ID.</param>
+    /// <param name="cancellationToken">CancellationToken</param>
+    /// <returns>Collection</returns>
+    public async Task<Collection> GetCollection(string databaseId,
+        string collectionId,
+        CancellationToken cancellationToken = default)
+    {
+        return await _databasesApi.GetCollection(databaseId, collectionId, cancellationToken);
     }
 }
