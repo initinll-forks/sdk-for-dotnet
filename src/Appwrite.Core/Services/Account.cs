@@ -56,7 +56,7 @@ public class Account : HttpClientProvider
     /// <param name="queries">Array of query strings</param>
     /// <param name="cancellationToken">Cancellation Token</param>
     /// <returns>LogList</returns>
-    public async Task<LogList> ListLogs(List<string>? queries = null, CancellationToken cancellationToken = default)
+    public async Task<LogList> ListLogs(IEnumerable<string>? queries = null, CancellationToken cancellationToken = default)
     {
         IDictionary<string, object> queryParameters = null;
 

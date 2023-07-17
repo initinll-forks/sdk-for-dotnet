@@ -390,7 +390,7 @@ public class Users : HttpClientProvider
     /// <param name="search">Search term to filter your list results. Max length: 256 chars.</param>
     /// <param name="cancellationToken">Cancellation Token</param>
     /// <returns>UserList</returns>
-    public async Task<UserList> List(List<string>? queries = null,
+    public async Task<UserList> List(IEnumerable<string>? queries = null,
         string? search = null,
         CancellationToken cancellationToken = default)
     {

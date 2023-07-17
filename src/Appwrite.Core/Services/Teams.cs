@@ -38,7 +38,7 @@ public class Teams : HttpClientProvider
     /// </param>
     /// <param name="cancellationToken">Cancellation Token</param>
     /// <returns>Team</returns>
-    public async Task<Team> Create(string teamId, string name, List<string>? roles = null, CancellationToken cancellationToken = default)
+    public async Task<Team> Create(string teamId, string name, IEnumerable<string>? roles = null, CancellationToken cancellationToken = default)
     {
         IDictionary<string, object> bodyParameters = new Dictionary<string, object>
         {
@@ -69,7 +69,7 @@ public class Teams : HttpClientProvider
     /// <param name="search">Search term to filter your list results. Max length: 256 chars.</param>
     /// <param name="cancellationToken">Cancellation Token</param>
     /// <returns>TeamList</returns>
-    public async Task<TeamList> List(List<string>? queries = null, 
+    public async Task<TeamList> List(IEnumerable<string>? queries = null, 
         string? search = null, 
         CancellationToken cancellationToken = default)
     {
@@ -207,7 +207,7 @@ public class Teams : HttpClientProvider
     /// <param name="cancellationToken">Cancellation Token</param>
     /// <returns>MembershipList</returns>
     public async Task<MembershipList> ListMemberships(string teamId,
-        List<string>? queries,
+        IEnumerable<string>? queries,
         string? search,
         CancellationToken cancellationToken)
     {
