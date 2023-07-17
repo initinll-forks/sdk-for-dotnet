@@ -51,7 +51,7 @@ public class Databases : HttpClientProvider
     /// <param name="search">Search term to filter your list results. Max length: 256 chars.</param>
     /// <param name="cancellationToken">Cancellation Token</param>
     /// <returns>DatabaseList</returns>
-    public async Task<DatabaseList> List(List<string>? queries = null,
+    public async Task<DatabaseList> List(IEnumerable<string>? queries = null,
         string? search = null,
         CancellationToken cancellationToken = default)
     {
@@ -121,5 +121,56 @@ public class Databases : HttpClientProvider
     public async Task Delete(string databaseId, CancellationToken cancellationToken = default)
     {
         await _databasesApi.Delete(databaseId, cancellationToken);
+    }
+
+    /// <summary>
+    /// Create Collection
+    /// </summary>
+    /// <para>
+    /// Create a new Collection. 
+    /// Before using this route, you should create a new database resource using 
+    /// either a server integration API or directly from your database console.
+    /// </para>
+    /// <param name="databaseId">Database ID.</param>
+    /// <param name="collectionId">
+    /// Unique Id. 
+    /// Choose your own unique ID or pass the string ID.unique() to auto generate it. 
+    /// Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. 
+    /// Can't start with a special char. Max length is 36 chars.
+    /// </param>
+    /// <param name="name">Collection name. Max length: 128 chars.</param>
+    /// <param name="permissions">
+    /// An array of permissions strings. By default no user is granted with any permissions.
+    /// </param>
+    /// <param name="documentSecurity">
+    /// Enables configuring permissions for individual documents. 
+    /// A user needs one of document or collection level permissions to access a document. 
+    /// </param>
+    /// <param name="cancellationToken">Cancellation Token</param>
+    /// <returns>Collection</returns>
+    public async Task<Collection> CreateCollection(string databaseId, 
+        string collectionId, 
+        string name, 
+        IEnumerable<string>? permissions = null, 
+        bool? documentSecurity = null,
+        CancellationToken cancellationToken = default)
+    {
+        IDictionary<string, object> bodyParameters = new Dictionary<string, object>
+        {
+            { "collectionId", collectionId },
+            { "name", name }
+        };
+
+        if (permissions != null && permissions.Count() > 0)
+        {
+            bodyParameters.Add("permissions", permissions);
+        }
+
+        if (documentSecurity != null)
+        {
+            bodyParameters.Add("documentSecurity", documentSecurity);
+        }
+
+        return await _databasesApi.CreateCollection(databaseId, bodyParameters, cancellationToken);
     }
 }

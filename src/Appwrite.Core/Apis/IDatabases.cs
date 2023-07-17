@@ -20,4 +20,7 @@ internal interface IDatabases
 
     [Delete("/databases/{databaseId}")]
     Task Delete(string databaseId, CancellationToken cancellationToken = default);
+
+    [Post("/databases/{databaseId}/collections")]
+    Task<Collection> CreateCollection(string databaseId, [Body(BodySerializationMethod.UrlEncoded)] IDictionary<string, object> bodyParameters, CancellationToken cancellationToken = default);
 }
