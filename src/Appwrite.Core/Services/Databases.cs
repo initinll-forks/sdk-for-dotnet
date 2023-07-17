@@ -232,4 +232,46 @@ public class Databases : HttpClientProvider
     {
         return await _databasesApi.GetCollection(databaseId, collectionId, cancellationToken);
     }
+
+    /// <summary>
+    /// Update Collection
+    /// </summary>
+    /// <para>Update a collection by its unique ID.</para>
+    /// <param name="databaseId">Database ID.</param>
+    /// <param name="collectionId">Collection ID.</param>
+    /// <param name="name">Collection name. Max length: 128 chars.</param>
+    /// <param name="permissions">
+    /// An array of permission strings. 
+    /// By default the current permission are inherited.
+    /// </param>
+    /// <param name="documentSecurity">
+    /// Enables configuring permissions for individual documents. 
+    /// A user needs one of document or collection level permissions to access a document.
+    /// </param>
+    /// <param name="cancellationToken">Cancellation Token</param>
+    /// <returns>Collection</returns>
+    public async Task<Collection> UpdateCollection(string databaseId,
+        string collectionId,
+        string name,
+        IEnumerable<string>? permissions = null,
+        bool? documentSecurity = null,
+        CancellationToken cancellationToken = default)
+    {
+        IDictionary<string, object> bodyParameters = new Dictionary<string, object>
+        {
+            { "name", name }
+        };
+
+        if (permissions != null && permissions.Count() > 0)
+        {
+            bodyParameters.Add("permissions", permissions);
+        }
+
+        if (documentSecurity != null)
+        {
+            bodyParameters.Add("documentSecurity", documentSecurity);
+        }
+
+        return await _databasesApi.UpdateCollection(databaseId, collectionId, bodyParameters, cancellationToken);
+    }
 }

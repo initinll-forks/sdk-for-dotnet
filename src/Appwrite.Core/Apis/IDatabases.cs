@@ -29,4 +29,7 @@ internal interface IDatabases
 
     [Get("/databases/{databaseId}/collections/{collectionId}")]
     Task<Collection> GetCollection(string databaseId, string collectionId, CancellationToken cancellationToken = default);
+
+    [Put("/databases/{databaseId}/collections/{collectionId}")]
+    Task<Collection> UpdateCollection(string databaseId, string collectionId, [Body(BodySerializationMethod.UrlEncoded)] IDictionary<string, object> bodyParameters, CancellationToken cancellationToken = default);
 }
