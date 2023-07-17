@@ -2,6 +2,8 @@
 using Appwrite.Core.Helpers;
 using Appwrite.Core.Models;
 
+using System.Threading.Tasks;
+
 namespace Appwrite.Core.Services;
 
 public class Databases : HttpClientProvider
@@ -73,5 +75,20 @@ public class Databases : HttpClientProvider
         }
 
         return await _databasesApi.List(queryParameters, cancellationToken);
+    }
+
+    /// <summary>
+    /// Get Database
+    /// </summary>
+    /// <para>
+    /// Get a database by its unique ID. 
+    /// This endpoint response returns a JSON object with the database metadata.
+    /// </para>
+    /// <param name="databaseId">Database ID.</param>
+    /// <param name="cancellationToken">Cancellation Token</param>
+    /// <returns>Database</returns>
+    public async Task<Database> Get(string databaseId, CancellationToken cancellationToken = default)
+    {
+        return await _databasesApi.Get(databaseId, cancellationToken);
     }
 }

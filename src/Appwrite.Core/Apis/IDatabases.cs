@@ -11,4 +11,7 @@ internal interface IDatabases
 
     [Get("/databases")]
     Task<DatabaseList> List([Query] IDictionary<string, object>? queryParameters = null, CancellationToken cancellationToken = default);
+
+    [Get("/databases/{databaseId}")]
+    Task<Database> Get(string databaseId, CancellationToken cancellationToken = default);
 }
