@@ -58,11 +58,14 @@ public class Account : HttpClientProvider
     /// <returns>LogList</returns>
     public async Task<LogList> ListLogs(List<string>? queries = null, CancellationToken cancellationToken = default)
     {
-        IDictionary<string, object> queryParameters = new Dictionary<string, object>();
+        IDictionary<string, object> queryParameters = null;
 
         if (queries != null && queries.Count() > 0)
         {
-            queryParameters.Add("queries", queries);
+            queryParameters = new Dictionary<string, object>
+            {
+                { "queries", queries }
+            };
         }
 
         return await _accountApi.ListLogs(queryParameters, cancellationToken);
