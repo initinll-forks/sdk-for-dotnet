@@ -69,18 +69,25 @@ public class Teams : HttpClientProvider
     /// <param name="search">Search term to filter your list results. Max length: 256 chars.</param>
     /// <param name="cancellationToken">Cancellation Token</param>
     /// <returns>TeamList</returns>
-    public async Task<TeamList> List(List<string>? queries = null, string? search = null, CancellationToken cancellationToken = default)
+    public async Task<TeamList> List(List<string>? queries = null, 
+        string? search = null, 
+        CancellationToken cancellationToken = default)
     {
-        var queryParameters = new Dictionary<string, object>();
+        IDictionary<string, object> queryParameters = null;
 
-        if (queries != null && queries.Count() > 0)
+        if ((queries != null && queries.Count() > 0) || (!string.IsNullOrEmpty(search)))
         {
-            queryParameters.Add("queries", queries);
-        }
+            queryParameters = new Dictionary<string, object>();
 
-        if (!string.IsNullOrEmpty(search))
-        {
-            queryParameters.Add("search", search);
+            if (queries != null && queries.Count() > 0)
+            {
+                queryParameters.Add("queries", queries);
+            }
+
+            if (!string.IsNullOrEmpty(search))
+            {
+                queryParameters.Add("search", search);
+            }
         }
 
         return await _teamsApi.List(queryParameters, cancellationToken);
@@ -204,16 +211,21 @@ public class Teams : HttpClientProvider
         string? search,
         CancellationToken cancellationToken)
     {
-        var queryParameters = new Dictionary<string, object>();
+        IDictionary<string, object> queryParameters = null;
 
-        if (queries != null && queries.Count() > 0)
+        if ((queries != null && queries.Count() > 0) || (!string.IsNullOrEmpty(search)))
         {
-            queryParameters.Add("queries", queries);
-        }
+            queryParameters = new Dictionary<string, object>();
 
-        if (!string.IsNullOrEmpty(search))
-        {
-            queryParameters.Add("search", search);
+            if (queries != null && queries.Count() > 0)
+            {
+                queryParameters.Add("queries", queries);
+            }
+
+            if (!string.IsNullOrEmpty(search))
+            {
+                queryParameters.Add("search", search);
+            }
         }
 
         return await _teamsApi.ListMemberships(teamId, queryParameters, cancellationToken);

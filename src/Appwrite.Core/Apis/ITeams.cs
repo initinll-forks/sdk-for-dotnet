@@ -7,10 +7,10 @@ namespace Appwrite.Core.Apis;
 internal interface ITeams
 {
     [Post("/teams")]
-    Task<Team> Create([Body(BodySerializationMethod.UrlEncoded)] IDictionary<string, object> bodyParameters = null, CancellationToken cancellationToken = default);
+    Task<Team> Create([Body(BodySerializationMethod.UrlEncoded)] IDictionary<string, object> bodyParameters, CancellationToken cancellationToken = default);
 
     [Get("/teams")]
-    Task<TeamList> List([Query] IDictionary<string, object> queryParameters = null, CancellationToken cancellationToken = default);
+    Task<TeamList> List([Query] IDictionary<string, object>? queryParameters = null, CancellationToken cancellationToken = default);
 
     [Get("/teams/{teamId}")]
     Task<Team> Get(string teamId, CancellationToken cancellationToken = default);
@@ -25,7 +25,7 @@ internal interface ITeams
     Task<Membership> CreateMembership(string teamId, [Body(BodySerializationMethod.UrlEncoded)] IDictionary<string, object> bodyParameters, CancellationToken cancellationToken = default);
 
     [Get("/teams/{teamId}/memberships")]
-    Task<MembershipList> ListMemberships(string teamId, [Query] IDictionary<string, object> queryParameters = null, CancellationToken cancellationToken = default);
+    Task<MembershipList> ListMemberships(string teamId, [Query] IDictionary<string, object>? queryParameters = null, CancellationToken cancellationToken = default);
 
     [Get("/teams/{teamId}/memberships/{membershipId}")]
     Task<Membership> GetMembership(string teamId, string membershipId, CancellationToken cancellationToken);
