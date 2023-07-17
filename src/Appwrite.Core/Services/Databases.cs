@@ -107,4 +107,19 @@ public class Databases : HttpClientProvider
 
         return await _databasesApi.Update(databaseId, bodyParameters, cancellationToken);
     }
+
+    /// <summary>
+    /// Delete Database
+    /// </summary>
+    /// <para>
+    /// Delete a database by its unique ID. 
+    /// Only API keys with with databases.write scope can delete a database.
+    /// </para>
+    /// <param name="databaseId">Database ID.</param>
+    /// <param name="cancellationToken">Cancellation Token</param>
+    /// <returns></returns>
+    public async Task Delete(string databaseId, CancellationToken cancellationToken = default)
+    {
+        await _databasesApi.Delete(databaseId, cancellationToken);
+    }
 }

@@ -17,4 +17,7 @@ internal interface IDatabases
 
     [Put("/databases/{databaseId}")]
     Task<Database> Update(string databaseId, [Body(BodySerializationMethod.UrlEncoded)] IDictionary<string, object> bodyParameters, CancellationToken cancellationToken = default);
+
+    [Delete("/databases/{databaseId}")]
+    Task Delete(string databaseId, CancellationToken cancellationToken = default);
 }
