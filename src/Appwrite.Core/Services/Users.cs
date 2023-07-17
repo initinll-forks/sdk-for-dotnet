@@ -394,16 +394,21 @@ public class Users : HttpClientProvider
         string? search = null,
         CancellationToken cancellationToken = default)
     {
-        IDictionary<string, object> queryParameters = new Dictionary<string, object>();
+        IDictionary<string, object> queryParameters = null;
 
-        if (queries != null && queries.Count() > 0)
+        if ((queries != null && queries.Count() > 0) || (!string.IsNullOrEmpty(search)))
         {
-            queryParameters.Add("queries", queries);
-        }
+            queryParameters = new Dictionary<string, object>();
 
-        if (!string.IsNullOrEmpty(search))
-        {
-            queryParameters.Add("search", search);
+            if (queries != null && queries.Count() > 0)
+            {
+                queryParameters.Add("queries", queries);
+            }
+
+            if (!string.IsNullOrEmpty(search))
+            {
+                queryParameters.Add("search", search);
+            }
         }
 
         return await _usersApi.List(queryParameters, cancellationToken);
