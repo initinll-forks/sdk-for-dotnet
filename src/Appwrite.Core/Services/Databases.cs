@@ -24,7 +24,7 @@ public class Databases : HttpClientProvider
     /// </param>
     /// <param name="name">Collection name. Max length: 128 chars.</param>
     /// <param name="cancellationToken">Cancellation Token</param>
-    /// <returns></returns>
+    /// <returns>Database</returns>
     public async Task<Database> Create(string databaseId, string name, CancellationToken cancellationToken)
     {
         IDictionary<string, object> bodyParameters = new Dictionary<string, object>
@@ -34,5 +34,44 @@ public class Databases : HttpClientProvider
         };
 
         return await _databasesApi.Create(bodyParameters, cancellationToken);
+    }
+
+    /// <summary>
+    /// List Databases
+    /// </summary>
+    /// <para>
+    /// Get a list of all databases from the current Appwrite project. 
+    /// You can use the search parameter to filter your results.
+    /// </para>
+    /// <param name="queries">
+    /// Array of query strings generated using the Query class provided by the SDK. 
+    /// Maximum of 100 queries are allowed, each 4096 characters long. 
+    /// You may filter on the following attributes: name
+    /// </param>
+    /// <param name="search">Search term to filter your list results. Max length: 256 chars.</param>
+    /// <param name="cancellationToken">Cancellation Token</param>
+    /// <returns>DatabaseList</returns>
+    public async Task<DatabaseList> List(List<string>? queries = null,
+        string? search = null,
+        CancellationToken cancellationToken = default)
+    {
+        IDictionary<string, object> queryParameters = null;
+
+        if ((queries != null && queries.Count() > 0) || (!string.IsNullOrEmpty(search)))
+        {
+            queryParameters = new Dictionary<string, object>();
+
+            if (queries != null && queries.Count() > 0)
+            {
+                queryParameters.Add("queries", queries);
+            }
+
+            if (!string.IsNullOrEmpty(search))
+            {
+                queryParameters.Add("search", search);
+            }
+        }
+
+        return await _databasesApi.List(queryParameters, cancellationToken);
     }
 }
