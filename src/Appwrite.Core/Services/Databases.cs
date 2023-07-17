@@ -2,6 +2,8 @@
 using Appwrite.Core.Helpers;
 using Appwrite.Core.Models;
 
+using Refit;
+
 namespace Appwrite.Core.Services;
 
 public class Databases : HttpClientProvider
@@ -172,5 +174,46 @@ public class Databases : HttpClientProvider
         }
 
         return await _databasesApi.CreateCollection(databaseId, bodyParameters, cancellationToken);
+    }
+
+    /// <summary>
+    /// List Collections
+    /// </summary>
+    /// <para>
+    /// Get a list of all collections that belong to the provided databaseId. 
+    /// You can use the search parameter to filter your results.
+    /// </para>
+    /// <param name="databaseId">Database ID.</param>
+    /// <param name="queries">
+    /// Array of query strings generated using the Query class provided by the SDK. 
+    /// Maximum of 100 queries are allowed, each 4096 characters long. 
+    /// You may filter on the following attributes: name, enabled, documentSecurity
+    /// </param>
+    /// <param name="search">Search term to filter your list results. Max length: 256 chars.</param>
+    /// <param name="cancellationToken">Cancellation Token</param>
+    /// <returns>CollectionList</returns>
+    public async Task<CollectionList> ListCollections(string databaseId, 
+        IEnumerable<string>? queries = null,
+        string? search = null, 
+        CancellationToken cancellationToken = default)
+    {
+        IDictionary<string, object> queryParameters = null;
+
+        if ((queries != null && queries.Count() > 0) || (!string.IsNullOrEmpty(search)))
+        {
+            queryParameters = new Dictionary<string, object>();
+
+            if (queries != null && queries.Count() > 0)
+            {
+                queryParameters.Add("queries", queries);
+            }
+
+            if (!string.IsNullOrEmpty(search))
+            {
+                queryParameters.Add("search", search);
+            }
+        }
+
+        return await _databasesApi.ListCollections(databaseId, queryParameters, cancellationToken);
     }
 }
