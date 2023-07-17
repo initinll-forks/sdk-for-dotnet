@@ -248,6 +248,7 @@ public class Databases : HttpClientProvider
     /// Enables configuring permissions for individual documents. 
     /// A user needs one of document or collection level permissions to access a document.
     /// </param>
+    /// <param name="enabled">Is collection enabled?</param>
     /// <param name="cancellationToken">Cancellation Token</param>
     /// <returns>Collection</returns>
     public async Task<Collection> UpdateCollection(string databaseId,
@@ -255,6 +256,7 @@ public class Databases : HttpClientProvider
         string name,
         IEnumerable<string>? permissions = null,
         bool? documentSecurity = null,
+        bool? enabled = null,
         CancellationToken cancellationToken = default)
     {
         IDictionary<string, object> bodyParameters = new Dictionary<string, object>
@@ -270,6 +272,11 @@ public class Databases : HttpClientProvider
         if (documentSecurity != null)
         {
             bodyParameters.Add("documentSecurity", documentSecurity);
+        }
+
+        if (enabled != null)
+        {
+            bodyParameters.Add("enabled", enabled);
         }
 
         return await _databasesApi.UpdateCollection(databaseId, collectionId, bodyParameters, cancellationToken);
