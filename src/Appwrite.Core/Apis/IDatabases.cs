@@ -32,4 +32,7 @@ internal interface IDatabases
 
     [Put("/databases/{databaseId}/collections/{collectionId}")]
     Task<Collection> UpdateCollection(string databaseId, string collectionId, [Body(BodySerializationMethod.UrlEncoded)] IDictionary<string, object> bodyParameters, CancellationToken cancellationToken = default);
+
+    [Delete("/databases/{databaseId}/collections/{collectionId}")]
+    Task DeleteCollection(string databaseId, string collectionId, CancellationToken cancellationToken = default);
 }

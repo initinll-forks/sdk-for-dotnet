@@ -281,4 +281,20 @@ public class Databases : HttpClientProvider
 
         return await _databasesApi.UpdateCollection(databaseId, collectionId, bodyParameters, cancellationToken);
     }
+
+    /// <summary>
+    /// Delete Collection
+    /// </summary>
+    /// <para>
+    /// Delete a collection by its unique ID. 
+    /// Only users with write permissions have access to delete this resource.
+    /// </para>
+    /// <param name="databaseId">Database ID.</param>
+    /// <param name="collectionId">Collection ID.</param>
+    /// <param name="cancellationToken">Cancellation Token</param>
+    /// <returns></returns>
+    public async Task DeleteCollection(string databaseId, string collectionId, CancellationToken cancellationToken = default)
+    {
+        await _databasesApi.DeleteCollection(databaseId, collectionId, cancellationToken);
+    }
 }
