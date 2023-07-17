@@ -6,13 +6,11 @@ namespace Appwrite.Core.Services;
 
 public class Teams : HttpClientProvider
 {
-    private readonly Client _client;
     private readonly ITeams _teamsApi;
 
     public Teams(Client client)
     {
-        _client = client;
-        _teamsApi = base.GetRestService<ITeams>(_client);
+        _teamsApi = base.GetRestService<ITeams>(client);
     }
 
     /// <summary>
@@ -163,11 +161,11 @@ public class Teams : HttpClientProvider
     /// <param name="name">Name of the new team member. Max length: 128 chars.</param>
     /// <param name="cancellationToken">Cancellation Token</param>
     /// <returns>Membership</returns>
-    public async Task<Membership> CreateMembership(string teamId, 
-        string email, 
-        List<string> roles, 
-        string url, 
-        string? name, 
+    public async Task<Membership> CreateMembership(string teamId,
+        string email,
+        List<string> roles,
+        string url,
+        string? name,
         CancellationToken cancellationToken)
     {
         IDictionary<string, object> bodyParameters = new Dictionary<string, object>
@@ -201,9 +199,9 @@ public class Teams : HttpClientProvider
     /// <param name="search">Search term to filter your list results. Max length: 256 chars.</param>
     /// <param name="cancellationToken">Cancellation Token</param>
     /// <returns>MembershipList</returns>
-    public async Task<MembershipList> ListMemberships(string teamId, 
-        List<string>? queries, 
-        string? search, 
+    public async Task<MembershipList> ListMemberships(string teamId,
+        List<string>? queries,
+        string? search,
         CancellationToken cancellationToken)
     {
         var queryParameters = new Dictionary<string, object>();
@@ -255,9 +253,9 @@ public class Teams : HttpClientProvider
     /// </param>
     /// <param name="cancellationToken">Cancellation Token</param>
     /// <returns></returns>
-    public async Task<Membership> UpdateMembershipRoles(string teamId, 
-        string membershipId, 
-        List<string> roles, 
+    public async Task<Membership> UpdateMembershipRoles(string teamId,
+        string membershipId,
+        List<string> roles,
         CancellationToken cancellationToken)
     {
         IDictionary<string, object> bodyParameters = new Dictionary<string, object>
@@ -310,7 +308,7 @@ public class Teams : HttpClientProvider
     /// <param name="membershipId">Membership ID.</param>
     /// <param name="cancellationToken">Cancellation Token</param>
     /// <returns></returns>
-    public async Task DeleteMembership(string teamId,string membershipId, CancellationToken cancellationToken)
+    public async Task DeleteMembership(string teamId, string membershipId, CancellationToken cancellationToken)
     {
         await _teamsApi.DeleteMembership(teamId, membershipId, cancellationToken);
     }

@@ -6,14 +6,11 @@ namespace Appwrite.Core.Services;
 
 public class Account : HttpClientProvider
 {
-    private readonly Client _client;
     private readonly IAccount _accountApi;
-
 
     public Account(Client client)
     {
-        _client = client;
-        _accountApi = base.GetRestService<IAccount>(_client);
+        _accountApi = base.GetRestService<IAccount>(client);
     }
 
     /// <summary>
