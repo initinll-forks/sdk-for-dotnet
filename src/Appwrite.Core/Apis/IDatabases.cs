@@ -62,4 +62,7 @@ internal interface IDatabases
 
     [Post("/databases/{databaseId}/collections/{collectionId}/attributes/datetime")]
     Task<AttributeDatetime> CreateDatetimeAttribute(string databaseId, string collectionId, [Body(BodySerializationMethod.UrlEncoded)] IDictionary<string, object> bodyParameters, CancellationToken cancellationToken = default);
+
+    [Get("/databases/{databaseId}/collections/{collectionId}/attributes")]
+    Task<AttributeList> ListAttributes(string databaseId, string collectionId, CancellationToken cancellationToken = default);
 }

@@ -718,4 +718,18 @@ public class Databases : HttpClientProvider
 
         return await _databasesApi.CreateDatetimeAttribute(databaseId, collectionId, bodyParameters, cancellationToken);
     }
+
+    /// <summary>
+    /// List Attributes
+    /// </summary>
+    /// <param name="databaseId">Database ID.</param>
+    /// <param name="collectionId">
+    /// Collection ID. 
+    /// You can create a new collection using the Create Collection API.
+    /// </param>
+    /// <returns>AttributeList</returns>
+    public async Task<AttributeList> ListAttributes(string databaseId, string collectionId)
+    {
+        return await _databasesApi.ListAttributes(databaseId, collectionId);
+    }
 }
