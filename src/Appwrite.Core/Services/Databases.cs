@@ -2,10 +2,6 @@
 using Appwrite.Core.Helpers;
 using Appwrite.Core.Models;
 
-using Refit;
-
-using System.Xml;
-
 namespace Appwrite.Core.Services;
 
 public class Databases : HttpClientProvider
