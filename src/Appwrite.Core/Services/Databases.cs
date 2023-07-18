@@ -886,9 +886,9 @@ public class Databases : HttpClientProvider
     /// <param name="cancellationToken">Cancellation Token</param>
     /// <returns>Document</returns>
     public async Task<Document> CreateDocument(string databaseId,
-    string collectionId,
-    string documentId,
-    object data,
+        string collectionId,
+        string documentId,
+        object data,
         IEnumerable<string>? permissions = null,
         CancellationToken cancellationToken = default)
     {
@@ -904,5 +904,33 @@ public class Databases : HttpClientProvider
         }
 
         return await _databasesApi.CreateDocument(databaseId, collectionId, bodyParameters, cancellationToken);
+    }
+
+    /// <summary>
+    /// List Documents
+    /// </summary>
+    /// <para>
+    /// Get a list of all the user's documents in a given collection. 
+    /// You can use the query params to filter your results.
+    /// </para>
+    /// <param name="databaseId">Database ID.</param>
+    /// <param name="collectionId">
+    /// Collection ID. 
+    /// You can create a new collection using the Database service server integration.
+    /// </param>
+    /// <param name="queries">Array of query strings.Maximum of 100 queries are allowed, each 4096 characters long.</param>
+    /// <param name="cancellationToken"></param>
+    /// <returns>DocumentList</returns>
+    public async Task<DocumentList> ListDocuments(string databaseId,
+        string collectionId,
+        IEnumerable<string>? queries = null,
+        CancellationToken cancellationToken = default)
+    {
+        IDictionary<string, object> queryParameters = new Dictionary<string, object>
+        {
+            { "queries", queries }
+        };
+
+        return await _databasesApi.ListDocuments(databaseId, collectionId, queryParameters, cancellationToken);
     }
 }

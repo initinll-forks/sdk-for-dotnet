@@ -86,4 +86,7 @@ internal interface IDatabases
 
     [Post("/databases/{databaseId}/collections/{collectionId}/documents")]
     Task<Document> CreateDocument(string databaseId, string collectionId, [Body(BodySerializationMethod.UrlEncoded)] IDictionary<string, object> bodyParameters, CancellationToken cancellationToken = default);
+
+    [Get("/databases/{databaseId}/collections/{collectionId}/documents")]
+    Task<DocumentList> ListDocuments(string databaseId, string collectionId, [Query] IDictionary<string, object>? queryParameters = null, CancellationToken cancellationToken = default);
 }
