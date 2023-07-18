@@ -579,4 +579,60 @@ public class Databases : HttpClientProvider
 
         return await _databasesApi.CreateIntegerAttribute(databaseId, collectionId, bodyParameters, cancellationToken);
     }
+
+    /// <summary>
+    /// Create Float Attribute
+    /// </summary>
+    /// <para>Create a float attribute. Optionally, minimum and maximum values can be provided.</para>
+    /// <param name="databaseId">Database ID.</param>
+    /// <param name="collectionId">
+    /// Collection ID. 
+    /// You can create a new collection using the Create Collection API.
+    /// </param>
+    /// <param name="key">Attribute Key.</param>
+    /// <param name="required">Is attribute required?</param>
+    /// <param name="min">Minimum value to enforce on new documents</param>
+    /// <param name="max">Maximum value to enforce on new documents</param>
+    /// <param name="@default">Default value for attribute when not provided. Cannot be set when attribute is required.</param>
+    /// <param name="array">Is attribute an array?</param>
+    /// <param name="cancellationToken">Cancellation Token</param>
+    /// <returns>AttributeFloat</returns>
+    public async Task<AttributeFloat> CreateFloatAttribute(string databaseId,
+        string collectionId,
+        string key,
+        bool required,
+        int? min = null,
+        int? max = null,
+        int? @default = null,
+        bool? array = null,
+        CancellationToken cancellationToken = default)
+    {
+        IDictionary<string, object> bodyParameters = new Dictionary<string, object>
+        {
+            { "key", key },
+            { "required", required }
+        };
+
+        if (min != null)
+        {
+            bodyParameters.Add("min", min);
+        }
+
+        if (max != null)
+        {
+            bodyParameters.Add("max", max);
+        }
+
+        if (@default != null)
+        {
+            bodyParameters.Add("default", @default);
+        }
+
+        if (array != null)
+        {
+            bodyParameters.Add("array", array);
+        }
+
+        return await _databasesApi.CreateFloatAttribute(databaseId, collectionId, bodyParameters, cancellationToken);
+    }
 }
