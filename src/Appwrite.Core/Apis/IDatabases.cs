@@ -44,4 +44,7 @@ internal interface IDatabases
 
     [Post("/databases/{databaseId}/collections/{collectionId}/attributes/enum")]
     Task<AttributeEnum> CreateEnumAttribute(string databaseId, string collectionId, [Body(BodySerializationMethod.UrlEncoded)] IDictionary<string, object> bodyParameters, CancellationToken cancellationToken = default);
+
+    [Post("/databases/{databaseId}/collections/{collectionId}/attributes/ip")]
+    Task<AttributeIp> CreateIpAttribute(string databaseId, string collectionId, [Body(BodySerializationMethod.UrlEncoded)] IDictionary<string, object> bodyParameters, CancellationToken cancellationToken = default);
 }

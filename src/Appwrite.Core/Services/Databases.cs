@@ -439,4 +439,46 @@ public class Databases : HttpClientProvider
 
         return await _databasesApi.CreateEnumAttribute(databaseId, collectionId, bodyParameters, cancellationToken);
     }
+
+    /// <summary>
+    /// Create IP Address Attribute
+    /// </summary>
+    /// <para>Create IP address attribute.</para>
+    /// <param name="databaseId">Database ID.</param>
+    /// <param name="collectionId">
+    /// Collection ID. 
+    /// You can create a new collection using the Create Collection API.
+    /// </param>
+    /// <param name="key">Attribute Key.</param>
+    /// <param name="required">Is attribute required?</param>
+    /// <param name="@default">Default value for attribute when not provided. Cannot be set when attribute is required.</param>
+    /// <param name="array">Is attribute an array?</param>
+    /// <param name="cancellationToken">Cancellation Token</param>
+    /// <returns>AttributeIp</returns>
+    public async Task<AttributeIp> CreateIpAttribute(string databaseId,
+        string collectionId,
+        string key,
+        bool required,
+        string? @default = null,
+        bool? array = null,
+        CancellationToken cancellationToken = default)
+    {
+        IDictionary<string, object> bodyParameters = new Dictionary<string, object>
+        {
+            { "key", key },
+            { "required", required }
+        };
+
+        if (!string.IsNullOrEmpty(@default))
+        {
+            bodyParameters.Add("default", @default);
+        }
+
+        if (array != null)
+        {
+            bodyParameters.Add("array", array);
+        }
+
+        return await _databasesApi.CreateIpAttribute(databaseId, collectionId, bodyParameters, cancellationToken);
+    }
 }
