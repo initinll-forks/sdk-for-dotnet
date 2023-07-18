@@ -991,4 +991,21 @@ public class Databases : HttpClientProvider
 
         return await _databasesApi.UpdateDocument(databaseId, collectionId, documentId, bodyParameters, cancellationToken);
     }
+
+    /// <summary>
+    /// Delete Document
+    /// </summary>
+    /// <para>Delete a document by its unique ID.</para>
+    /// <param name="databaseId">Database ID.</param>
+    /// <param name="collectionId">Collection ID. You can create a new collection using the Database service server integration.</param>
+    /// <param name="documentId">Document ID.</param>
+    /// <param name="cancellationToken">Cancellation Token</param>
+    /// <returns></returns>
+    public async Task DeleteDocument(string databaseId,
+        string collectionId,
+        string documentId,
+        CancellationToken cancellationToken = default)
+    {
+        await _databasesApi.DeleteDocument(databaseId, collectionId, documentId, cancellationToken);
+    }
 }

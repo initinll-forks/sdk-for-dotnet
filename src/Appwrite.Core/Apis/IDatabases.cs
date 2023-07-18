@@ -95,4 +95,7 @@ internal interface IDatabases
 
     [Patch("/databases/{databaseId}/collections/{collectionId}/documents/{documentId}")]
     Task<Document> UpdateDocument(string databaseId, string collectionId, string documentId, [Body(BodySerializationMethod.UrlEncoded)] IDictionary<string, object>? bodyParameters = null, CancellationToken cancellationToken = default);
+
+    [Delete("/databases/{databaseId}/collections/{collectionId}/documents/{documentId}")]
+    Task DeleteDocument(string databaseId, string collectionId, string documentId, CancellationToken cancellationToken = default);
 }
