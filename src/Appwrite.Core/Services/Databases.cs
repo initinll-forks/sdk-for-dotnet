@@ -391,4 +391,52 @@ public class Databases : HttpClientProvider
 
         return await _databasesApi.CreateEmailAttribute(databaseId, collectionId, bodyParameters, cancellationToken);
     }
+
+    /// <summary>
+    /// Create Enum Attribute
+    /// </summary>
+    /// <param name="databaseId">Database ID.</param>
+    /// <param name="collectionId">
+    /// Collection ID. 
+    /// You can create a new collection using the Create Collection API.
+    /// </param>
+    /// <param name="key">Attribute Key.</param>
+    /// <param name="elements">
+    /// Array of elements in enumerated type. 
+    /// Uses length of longest element to determine size. 
+    /// Maximum of 100 elements are allowed, each 4096 characters long.
+    /// </param>
+    /// <param name="required">Is attribute required?</param>
+    /// <param name="@default">Default value for attribute when not provided. Cannot be set when attribute is required.</param>
+    /// <param name="array">Is attribute an array?</param>
+    /// <param name="cancellationToken">Cancellation Token</param>
+    /// <returns>AttributeEnum</returns>
+    public async Task<AttributeEnum> CreateEnumAttribute(string databaseId,
+        string collectionId,
+        string key,
+        IEnumerable<string> elements,
+        bool required,
+        string? @default = null,
+        bool? array = null,
+        CancellationToken cancellationToken = default)
+    {
+        IDictionary<string, object> bodyParameters = new Dictionary<string, object>
+        {
+            { "key", key },
+            { "elements", elements },
+            { "required", required }
+        };
+
+        if (!string.IsNullOrEmpty(@default))
+        {
+            bodyParameters.Add("default", @default);
+        }
+
+        if (array != null)
+        {
+            bodyParameters.Add("array", array);
+        }
+
+        return await _databasesApi.CreateEnumAttribute(databaseId, collectionId, bodyParameters, cancellationToken);
+    }
 }
