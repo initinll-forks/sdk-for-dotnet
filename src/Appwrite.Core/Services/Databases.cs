@@ -547,7 +547,7 @@ public class Databases : HttpClientProvider
         bool required,
         int? min = null,
         int? max = null,
-        string? @default = null,
+        int? @default = null,
         bool? array = null,
         CancellationToken cancellationToken = default)
     {
@@ -567,7 +567,7 @@ public class Databases : HttpClientProvider
             bodyParameters.Add("max", max);
         }
 
-        if (!string.IsNullOrEmpty(@default))
+        if (@default != null)
         {
             bodyParameters.Add("default", @default);
         }
