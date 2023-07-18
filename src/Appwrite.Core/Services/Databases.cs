@@ -677,4 +677,45 @@ public class Databases : HttpClientProvider
 
         return await _databasesApi.CreateBooleanAttribute(databaseId, collectionId, bodyParameters, cancellationToken);
     }
+
+    /// <summary>
+    /// Create DateTime Attribute
+    /// </summary>
+    /// <param name="databaseId">Database ID.</param>
+    /// <param name="collectionId">
+    /// Collection ID. 
+    /// You can create a new collection using the Create Collection API.
+    /// </param>
+    /// <param name="key">Attribute Key.</param>
+    /// <param name="required">Is attribute required?</param>
+    /// <param name="@default">Default value for attribute when not provided. Cannot be set when attribute is required.</param>
+    /// <param name="array">Is attribute an array?</param>
+    /// <param name="cancellationToken">Cancellation Token</param>
+    /// <returns>AttributeDatetime</returns>
+    public async Task<AttributeDatetime> CreateDatetimeAttribute(string databaseId,
+        string collectionId,
+        string key,
+        bool required,
+        string? @default = null,
+        bool? array = null,
+        CancellationToken cancellationToken = default)
+    {
+        IDictionary<string, object> bodyParameters = new Dictionary<string, object>
+        {
+            { "key", key },
+            { "required", required }
+        };
+
+        if (!string.IsNullOrEmpty(@default))
+        {
+            bodyParameters.Add("default", @default);
+        }
+
+        if (array != null)
+        {
+            bodyParameters.Add("array", array);
+        }
+
+        return await _databasesApi.CreateDatetimeAttribute(databaseId, collectionId, bodyParameters, cancellationToken);
+    }
 }
