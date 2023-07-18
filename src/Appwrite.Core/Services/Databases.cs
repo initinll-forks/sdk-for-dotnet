@@ -765,4 +765,41 @@ public class Databases : HttpClientProvider
     {
         await _databasesApi.DeleteAttribute(databaseId, collectionId, key, cancellationToken);
     }
+
+    /// <summary>
+    /// Create Index
+    /// </summary>
+    /// <param name="databaseId">Database ID.</param>
+    /// <param name="collectionId">
+    /// Collection ID. 
+    /// You can create a new collection using the Create Collection API.
+    /// </param>
+    /// <param name="key">Attribute Key.</param>
+    /// <param name="type">Index type.</param>
+    /// <param name="attributes">Array of attributes to index. Maximum of 100 attributes are allowed, each 32 characters long.</param>
+    /// <param name="orders">Array of index orders. Maximum of 100 orders are allowed.</param>
+    /// <param name="cancellationToken">CancellationToken</param>
+    /// <returns>Index</returns>
+    public async Task<Models.Index> CreateIndex(string databaseId, 
+        string collectionId, 
+        string key, 
+        string type,
+        IEnumerable<string> attributes,
+        IEnumerable<string>? orders = null,
+        CancellationToken cancellationToken = default)
+    {
+        IDictionary<string, object> bodyParameters = new Dictionary<string, object>
+        {
+            { "key", key },
+            { "type", type },
+            { "attributes", attributes }
+        };
+
+        if (orders != null && orders.Any())
+        {
+            bodyParameters.Add("orders", orders);
+        }
+
+        return await _databasesApi.CreateIndex(databaseId, collectionId, bodyParameters, cancellationToken);
+    }
 }

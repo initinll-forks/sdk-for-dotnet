@@ -71,4 +71,7 @@ internal interface IDatabases
 
     [Delete("/databases/{databaseId}/collections/{collectionId}/attributes/{key}")]
     Task DeleteAttribute(string databaseId, string collectionId, string key, CancellationToken cancellationToken = default);
+
+    [Post("/databases/{databaseId}/collections/{collectionId}/indexes")]
+    Task<Models.Index> CreateIndex(string databaseId, string collectionId, [Body(BodySerializationMethod.UrlEncoded)] IDictionary<string, object> bodyParameters, CancellationToken cancellationToken = default);
 }
