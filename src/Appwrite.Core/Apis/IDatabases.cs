@@ -65,4 +65,7 @@ internal interface IDatabases
 
     [Get("/databases/{databaseId}/collections/{collectionId}/attributes")]
     Task<AttributeList> ListAttributes(string databaseId, string collectionId, CancellationToken cancellationToken = default);
+
+    [Get("/databases/{databaseId}/collections/{collectionId}/attributes/{key}")]
+    Task<object> GetAttribute(string databaseId, string collectionId, string key, CancellationToken cancellationToken = default);
 }

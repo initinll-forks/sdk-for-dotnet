@@ -727,9 +727,26 @@ public class Databases : HttpClientProvider
     /// Collection ID. 
     /// You can create a new collection using the Create Collection API.
     /// </param>
+    /// <param name="cancellationToken">Cancellation Token</param>
     /// <returns>AttributeList</returns>
-    public async Task<AttributeList> ListAttributes(string databaseId, string collectionId)
+    public async Task<AttributeList> ListAttributes(string databaseId, string collectionId, CancellationToken cancellationToken = default)
     {
-        return await _databasesApi.ListAttributes(databaseId, collectionId);
+        return await _databasesApi.ListAttributes(databaseId, collectionId, cancellationToken);
+    }
+
+    /// <summary>
+    /// Get Attribute
+    /// </summary>
+    /// <param name="databaseId">Database ID.</param>
+    /// <param name="collectionId">
+    /// Collection ID. 
+    /// You can create a new collection using the Create Collection API.
+    /// </param>
+    /// <param name="key">Attribute Key.</param>
+    /// <param name="cancellationToken">Cancellation Token</param>
+    /// <returns>object</returns>
+    public async Task<object> GetAttribute(string databaseId, string collectionId, string key, CancellationToken cancellationToken = default)
+    {
+        return await _databasesApi.GetAttribute(databaseId, collectionId, key, cancellationToken);
     }
 }
