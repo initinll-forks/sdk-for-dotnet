@@ -346,4 +346,49 @@ public class Databases : HttpClientProvider
 
         return await _databasesApi.CreateStringAttribute(databaseId, collectionId, bodyParameters, cancellationToken);
     }
+
+    /// <summary>
+    /// Create Email Attribute
+    /// </summary>
+    /// <para>Create an email attribute.</para>
+    /// <param name="databaseId">Database ID.</param>
+    /// <param name="collectionId">
+    /// Collection ID. 
+    /// You can create a new collection using the Create Collection API.
+    /// </param>
+    /// <param name="key">Attribute Key.</param>
+    /// <param name="size">Attribute size for text attributes, in number of characters.</param>
+    /// <param name="required">Is attribute required?</param>
+    /// <param name="@default">Default value for attribute when not provided. Cannot be set when attribute is required.</param>
+    /// <param name="array">Is attribute an array?</param>
+    /// <param name="cancellationToken">Cancellation Token</param>
+    /// <returns>AttributeEmail</returns>
+    public async Task<AttributeEmail> CreateEmailAttribute(string databaseId,
+        string collectionId,
+        string key,
+        int size,
+        bool required,
+        string? @default = null,
+        bool? array = null,
+        CancellationToken cancellationToken = default)
+    {
+        IDictionary<string, object> bodyParameters = new Dictionary<string, object>
+        {
+            { "key", key },
+            { "size", size },
+            { "required", required }
+        };
+
+        if (!string.IsNullOrEmpty(@default))
+        {
+            bodyParameters.Add("default", @default);
+        }
+
+        if (array != null)
+        {
+            bodyParameters.Add("array", array);
+        }
+
+        return await _databasesApi.CreateEmailAttribute(databaseId, collectionId, bodyParameters, cancellationToken);
+    }
 }

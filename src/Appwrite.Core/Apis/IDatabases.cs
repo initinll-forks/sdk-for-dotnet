@@ -38,4 +38,7 @@ internal interface IDatabases
 
     [Post("/databases/{databaseId}/collections/{collectionId}/attributes/string")]
     Task<AttributeString> CreateStringAttribute(string databaseId, string collectionId, [Body(BodySerializationMethod.UrlEncoded)] IDictionary<string, object> bodyParameters, CancellationToken cancellationToken = default);
+
+    [Post("/databases/{databaseId}/collections/{collectionId}/attributes/email")]
+    Task<AttributeEmail> CreateEmailAttribute(string databaseId, string collectionId, [Body(BodySerializationMethod.UrlEncoded)] IDictionary<string, object> bodyParameters, CancellationToken cancellationToken = default);
 }
