@@ -834,4 +834,23 @@ public class Databases : HttpClientProvider
     {
         return await _databasesApi.GetIndex(databaseId, collectionId, key, cancellationToken);
     }
+
+    /// <summary>
+    /// Delete Index
+    /// </summary>
+    /// <param name="databaseId">Database ID.</param>
+    /// <param name="collectionId">
+    /// Collection ID. 
+    /// You can create a new collection using the Create Collection API.
+    /// </param>
+    /// <param name="key">Index Key.</param>
+    /// <param name="cancellationToken">Cancellation Token</param>
+    /// <returns></returns>
+    public async Task DeleteIndex(string databaseId,
+        string collectionId,
+        string key,
+        CancellationToken cancellationToken = default)
+    {
+        await _databasesApi.DeleteIndex(databaseId, collectionId, key, cancellationToken);
+    }
 }

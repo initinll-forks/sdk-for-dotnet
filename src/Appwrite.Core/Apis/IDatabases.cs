@@ -80,4 +80,7 @@ internal interface IDatabases
 
     [Get("/databases/{databaseId}/collections/{collectionId}/indexes/{key}")]
     Task<Models.Index> GetIndex(string databaseId, string collectionId, string key, CancellationToken cancellationToken = default);
+
+    [Delete("/databases/{databaseId}/collections/{collectionId}/indexes/{key}")]
+    Task DeleteIndex(string databaseId, string collectionId, string key, CancellationToken cancellationToken = default);
 }
