@@ -35,4 +35,7 @@ internal interface IDatabases
 
     [Delete("/databases/{databaseId}/collections/{collectionId}")]
     Task DeleteCollection(string databaseId, string collectionId, CancellationToken cancellationToken = default);
+
+    [Post("/databases/{databaseId}/collections/{collectionId}/attributes/string")]
+    Task<AttributeString> CreateStringAttribute(string databaseId, string collectionId, [Body(BodySerializationMethod.UrlEncoded)] IDictionary<string, object> bodyParameters, CancellationToken cancellationToken = default);
 }
