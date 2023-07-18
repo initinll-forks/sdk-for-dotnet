@@ -749,4 +749,20 @@ public class Databases : HttpClientProvider
     {
         return await _databasesApi.GetAttribute(databaseId, collectionId, key, cancellationToken);
     }
+
+    /// <summary>
+    /// Delete Attribute
+    /// </summary>
+    /// <param name="databaseId">Database ID.</param>
+    /// <param name="collectionId">
+    /// Collection ID. 
+    /// You can create a new collection using the Create Collection API.
+    /// </param>
+    /// <param name="key">Attribute Key.</param>
+    /// <param name="cancellationToken">Cancellation Token</param>
+    /// <returns></returns>
+    public async Task DeleteAttribute(string databaseId, string collectionId, string key, CancellationToken cancellationToken = default)
+    {
+        await _databasesApi.DeleteAttribute(databaseId, collectionId, key, cancellationToken);
+    }
 }
