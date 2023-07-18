@@ -933,4 +933,27 @@ public class Databases : HttpClientProvider
 
         return await _databasesApi.ListDocuments(databaseId, collectionId, queryParameters, cancellationToken);
     }
+
+    /// <summary>
+    /// Get Document
+    /// </summary>
+    /// <para>
+    /// Get a document by its unique ID. 
+    /// This endpoint response returns a JSON object with the document data.
+    /// </para>
+    /// <param name="databaseId">Database ID.</param>
+    /// <param name="collectionId">
+    /// Collection ID. 
+    /// You can create a new collection using the Database service server integration.
+    /// </param>
+    /// <param name="documentId">Document ID.</param>
+    /// <param name="cancellationToken">Cancellation Token</param>
+    /// <returns>Document</returns>
+    public async Task<Document> GetDocument(string databaseId,
+        string collectionId,
+        string documentId,
+        CancellationToken cancellationToken = default)
+    {
+        return await _databasesApi.GetDocument(databaseId, collectionId, documentId, cancellationToken);
+    }
 }

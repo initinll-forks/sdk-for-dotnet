@@ -89,4 +89,7 @@ internal interface IDatabases
 
     [Get("/databases/{databaseId}/collections/{collectionId}/documents")]
     Task<DocumentList> ListDocuments(string databaseId, string collectionId, [Query] IDictionary<string, object>? queryParameters = null, CancellationToken cancellationToken = default);
+
+    [Get("/databases/{databaseId}/collections/{collectionId}/documents/{documentId}")]
+    Task<Document> GetDocument(string databaseId, string collectionId, string documentId, CancellationToken cancellationToken = default);
 }
