@@ -92,4 +92,7 @@ internal interface IDatabases
 
     [Get("/databases/{databaseId}/collections/{collectionId}/documents/{documentId}")]
     Task<Document> GetDocument(string databaseId, string collectionId, string documentId, CancellationToken cancellationToken = default);
+
+    [Patch("/databases/{databaseId}/collections/{collectionId}/documents/{documentId}")]
+    Task<Document> UpdateDocument(string databaseId, string collectionId, string documentId, [Body(BodySerializationMethod.UrlEncoded)] IDictionary<string, object>? bodyParameters = null, CancellationToken cancellationToken = default);
 }

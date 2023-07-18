@@ -956,4 +956,39 @@ public class Databases : HttpClientProvider
     {
         return await _databasesApi.GetDocument(databaseId, collectionId, documentId, cancellationToken);
     }
+
+    /// <summary>
+    /// Update Document
+    /// </summary>
+    /// <para>
+    /// Update a document by its unique ID. 
+    /// Using the patch method you can pass only specific fields that will get updated.
+    /// </para>
+    /// <param name="databaseId">Database ID.</param>
+    /// <param name="collectionId">Collection ID.</param>
+    /// <param name="documentId">Document ID.</param>
+    /// <param name="data">Document data as JSON object. Include only attribute and value pairs to be updated.</param>
+    /// <param name="permissions">An array of permissions strings. By default the current permissions are inherited. </param>
+    /// <param name="cancellationToken">Cancellation Token</param>
+    /// <returns>Document</returns>
+    public async Task<Document> UpdateDocument(string databaseId,
+        string collectionId,
+        string documentId,
+        object? data = null,
+        IEnumerable<string>? permissions = null,
+        CancellationToken cancellationToken = default)
+    {
+        IDictionary<string, object> bodyParameters = null;
+
+        if ((data != null) || (permissions != null && permissions.Any()))
+        {
+            bodyParameters = new Dictionary<string, object>
+            {
+                { "documentId", documentId },
+                { "data", data }
+            };
+        }
+
+        return await _databasesApi.UpdateDocument(databaseId, collectionId, documentId, bodyParameters, cancellationToken);
+    }
 }
