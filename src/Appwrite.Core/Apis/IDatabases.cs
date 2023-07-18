@@ -56,4 +56,7 @@ internal interface IDatabases
 
     [Post("/databases/{databaseId}/collections/{collectionId}/attributes/float")]
     Task<AttributeFloat> CreateFloatAttribute(string databaseId, string collectionId, [Body(BodySerializationMethod.UrlEncoded)] IDictionary<string, object> bodyParameters, CancellationToken cancellationToken = default);
+
+    [Post("/databases/{databaseId}/collections/{collectionId}/attributes/boolean")]
+    Task<AttributeBoolean> CreateBooleanAttribute(string databaseId, string collectionId, [Body(BodySerializationMethod.UrlEncoded)] IDictionary<string, object> bodyParameters, CancellationToken cancellationToken = default);
 }
