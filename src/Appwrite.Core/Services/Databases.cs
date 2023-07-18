@@ -2,6 +2,10 @@
 using Appwrite.Core.Helpers;
 using Appwrite.Core.Models;
 
+using Refit;
+
+using System.Xml;
+
 namespace Appwrite.Core.Services;
 
 public class Databases : HttpClientProvider
@@ -809,7 +813,7 @@ public class Databases : HttpClientProvider
     /// </param>
     /// <param name="cancellationToken">Cancellation Token</param>
     /// <returns>IndexList</returns>
-    public async Task<IndexList> ListIndexes(string databaseId, 
+    public async Task<IndexList> ListIndexes(string databaseId,
         string collectionId,
         CancellationToken cancellationToken = default)
     {
@@ -852,5 +856,53 @@ public class Databases : HttpClientProvider
         CancellationToken cancellationToken = default)
     {
         await _databasesApi.DeleteIndex(databaseId, collectionId, key, cancellationToken);
+    }
+
+    /// <summary>
+    /// Create Document
+    /// </summary>
+    /// <para>
+    /// Create a new Document. 
+    /// Before using this route, you should create a new collection resource 
+    /// using either via Create Collection API or directly from your database console.
+    /// </para>
+    /// <param name="databaseId">Database ID.</param>
+    /// <param name="collectionId">
+    /// Collection ID. 
+    /// You can create a new collection using the Database service server integration. 
+    /// Make sure to define attributes before creating documents.
+    /// </param>
+    /// <param name="documentId">
+    /// Document ID. 
+    /// Choose your own unique ID or pass the string ID.unique() to auto generate it. 
+    /// Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. 
+    /// Can't start with a special char. Max length is 36 chars.
+    /// </param>
+    /// <param name="data">Document data as JSON object.</param>
+    /// <param name="permissions">
+    /// An array of permissions strings. 
+    /// By default the current user is granted with all permissions.
+    /// </param>
+    /// <param name="cancellationToken">Cancellation Token</param>
+    /// <returns>Document</returns>
+    public async Task<Document> CreateDocument(string databaseId,
+    string collectionId,
+    string documentId,
+    object data,
+        IEnumerable<string>? permissions = null,
+        CancellationToken cancellationToken = default)
+    {
+        IDictionary<string, object> bodyParameters = new Dictionary<string, object>
+        {
+            { "documentId", documentId },
+            { "data", data }
+        };
+
+        if (permissions != null && permissions.Any())
+        {
+            bodyParameters.Add("permissions", permissions);
+        }
+
+        return await _databasesApi.CreateDocument(databaseId, collectionId, bodyParameters, cancellationToken);
     }
 }

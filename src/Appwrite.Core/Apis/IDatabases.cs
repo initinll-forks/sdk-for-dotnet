@@ -83,4 +83,7 @@ internal interface IDatabases
 
     [Delete("/databases/{databaseId}/collections/{collectionId}/indexes/{key}")]
     Task DeleteIndex(string databaseId, string collectionId, string key, CancellationToken cancellationToken = default);
+
+    [Post("/databases/{databaseId}/collections/{collectionId}/documents")]
+    Task<Document> CreateDocument(string databaseId, string collectionId, [Body(BodySerializationMethod.UrlEncoded)] IDictionary<string, object> bodyParameters, CancellationToken cancellationToken = default);
 }
