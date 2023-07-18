@@ -76,5 +76,8 @@ internal interface IDatabases
     Task<Models.Index> CreateIndex(string databaseId, string collectionId, [Body(BodySerializationMethod.UrlEncoded)] IDictionary<string, object> bodyParameters, CancellationToken cancellationToken = default);
 
     [Get("/databases/{databaseId}/collections/{collectionId}/indexes")]
-    Task<Models.IndexList> ListIndexes(string databaseId, string collectionId, CancellationToken cancellationToken = default);
+    Task<IndexList> ListIndexes(string databaseId, string collectionId, CancellationToken cancellationToken = default);
+
+    [Get("/databases/{databaseId}/collections/{collectionId}/indexes/{key}")]
+    Task<Models.Index> GetIndex(string databaseId, string collectionId, string key, CancellationToken cancellationToken = default);
 }

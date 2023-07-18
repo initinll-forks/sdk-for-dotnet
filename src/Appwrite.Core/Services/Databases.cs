@@ -809,10 +809,29 @@ public class Databases : HttpClientProvider
     /// </param>
     /// <param name="cancellationToken">Cancellation Token</param>
     /// <returns>IndexList</returns>
-    public async Task<Models.IndexList> ListIndexes(string databaseId, 
+    public async Task<IndexList> ListIndexes(string databaseId, 
         string collectionId,
         CancellationToken cancellationToken = default)
     {
         return await _databasesApi.ListIndexes(databaseId, collectionId, cancellationToken);
+    }
+
+    /// <summary>
+    /// Get Index
+    /// </summary>
+    /// <param name="databaseId">Database ID.</param>
+    /// <param name="collectionId">
+    /// Collection ID. 
+    /// You can create a new collection using the Create Collection API.
+    /// </param>
+    /// <param name="key">Index Key.</param>
+    /// <param name="cancellationToken">Cancellation Token</param>
+    /// <returns>Index</returns>
+    public async Task<Models.Index> GetIndex(string databaseId,
+        string collectionId,
+        string key,
+        CancellationToken cancellationToken = default)
+    {
+        return await _databasesApi.GetIndex(databaseId, collectionId, key, cancellationToken);
     }
 }
