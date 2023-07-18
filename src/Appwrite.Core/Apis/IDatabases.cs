@@ -50,4 +50,7 @@ internal interface IDatabases
 
     [Post("/databases/{databaseId}/collections/{collectionId}/attributes/url")]
     Task<AttributeUrl> CreateUrlAttribute(string databaseId, string collectionId, [Body(BodySerializationMethod.UrlEncoded)] IDictionary<string, object> bodyParameters, CancellationToken cancellationToken = default);
+
+    [Post("/databases/{databaseId}/collections/{collectionId}/attributes/integer")]
+    Task<AttributeInteger> CreateIntegerAttribute(string databaseId, string collectionId, [Body(BodySerializationMethod.UrlEncoded)] IDictionary<string, object> bodyParameters, CancellationToken cancellationToken = default);
 }
