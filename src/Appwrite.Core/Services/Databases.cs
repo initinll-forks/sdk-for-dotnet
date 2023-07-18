@@ -798,4 +798,21 @@ public class Databases : HttpClientProvider
 
         return await _databasesApi.CreateIndex(databaseId, collectionId, bodyParameters, cancellationToken);
     }
+
+    /// <summary>
+    /// List Indexes
+    /// </summary>
+    /// <param name="databaseId">Database ID.</param>
+    /// <param name="collectionId">
+    /// Collection ID. 
+    /// You can create a new collection using the Create Collection API.
+    /// </param>
+    /// <param name="cancellationToken">Cancellation Token</param>
+    /// <returns>IndexList</returns>
+    public async Task<Models.IndexList> ListIndexes(string databaseId, 
+        string collectionId,
+        CancellationToken cancellationToken = default)
+    {
+        return await _databasesApi.ListIndexes(databaseId, collectionId, cancellationToken);
+    }
 }
