@@ -46,7 +46,7 @@ public class Teams : HttpClientProvider
             { "name", name }
         };
 
-        if (roles != null && roles.Count() > 0)
+        if (roles != null && roles.Any())
         {
             bodyParameters.Add("roles", roles);
         }
@@ -75,11 +75,11 @@ public class Teams : HttpClientProvider
     {
         IDictionary<string, object> queryParameters = null;
 
-        if ((queries != null && queries.Count() > 0) || (!string.IsNullOrEmpty(search)))
+        if ((queries != null && queries.Any()) || (!string.IsNullOrEmpty(search)))
         {
             queryParameters = new Dictionary<string, object>();
 
-            if (queries != null && queries.Count() > 0)
+            if (queries != null && queries.Any())
             {
                 queryParameters.Add("queries", queries);
             }
@@ -213,11 +213,11 @@ public class Teams : HttpClientProvider
     {
         IDictionary<string, object> queryParameters = null;
 
-        if ((queries != null && queries.Count() > 0) || (!string.IsNullOrEmpty(search)))
+        if ((queries != null && queries.Any()) || (!string.IsNullOrEmpty(search)))
         {
             queryParameters = new Dictionary<string, object>();
 
-            if (queries != null && queries.Count() > 0)
+            if (queries != null && queries.Any())
             {
                 queryParameters.Add("queries", queries);
             }

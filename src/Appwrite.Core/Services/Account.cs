@@ -60,7 +60,7 @@ public class Account : HttpClientProvider
     {
         IDictionary<string, object> queryParameters = null;
 
-        if (queries != null && queries.Count() > 0)
+        if (queries != null && queries.Any())
         {
             queryParameters = new Dictionary<string, object>
             {

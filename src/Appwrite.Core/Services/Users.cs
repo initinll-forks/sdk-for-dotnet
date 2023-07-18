@@ -396,11 +396,11 @@ public class Users : HttpClientProvider
     {
         IDictionary<string, object> queryParameters = null;
 
-        if ((queries != null && queries.Count() > 0) || (!string.IsNullOrEmpty(search)))
+        if ((queries != null && queries.Any()) || (!string.IsNullOrEmpty(search)))
         {
             queryParameters = new Dictionary<string, object>();
 
-            if (queries != null && queries.Count() > 0)
+            if (queries != null && queries.Any())
             {
                 queryParameters.Add("queries", queries);
             }

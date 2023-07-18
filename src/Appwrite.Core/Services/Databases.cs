@@ -2,10 +2,6 @@
 using Appwrite.Core.Helpers;
 using Appwrite.Core.Models;
 
-using Refit;
-
-using System.Xml.Linq;
-
 namespace Appwrite.Core.Services;
 
 public class Databases : HttpClientProvider
@@ -61,11 +57,11 @@ public class Databases : HttpClientProvider
     {
         IDictionary<string, object> queryParameters = null;
 
-        if ((queries != null && queries.Count() > 0) || (!string.IsNullOrEmpty(search)))
+        if ((queries != null && queries.Any()) || (!string.IsNullOrEmpty(search)))
         {
             queryParameters = new Dictionary<string, object>();
 
-            if (queries != null && queries.Count() > 0)
+            if (queries != null && queries.Any())
             {
                 queryParameters.Add("queries", queries);
             }
@@ -165,7 +161,7 @@ public class Databases : HttpClientProvider
             { "name", name }
         };
 
-        if (permissions != null && permissions.Count() > 0)
+        if (permissions != null && permissions.Any())
         {
             bodyParameters.Add("permissions", permissions);
         }
@@ -201,11 +197,11 @@ public class Databases : HttpClientProvider
     {
         IDictionary<string, object> queryParameters = null;
 
-        if ((queries != null && queries.Count() > 0) || (!string.IsNullOrEmpty(search)))
+        if ((queries != null && queries.Any()) || (!string.IsNullOrEmpty(search)))
         {
             queryParameters = new Dictionary<string, object>();
 
-            if (queries != null && queries.Count() > 0)
+            if (queries != null && queries.Any())
             {
                 queryParameters.Add("queries", queries);
             }
@@ -268,7 +264,7 @@ public class Databases : HttpClientProvider
             { "name", name }
         };
 
-        if (permissions != null && permissions.Count() > 0)
+        if (permissions != null && permissions.Any())
         {
             bodyParameters.Add("permissions", permissions);
         }
@@ -318,13 +314,13 @@ public class Databases : HttpClientProvider
     /// <param name="array">Is attribute an array?</param>
     /// <param name="cancellationToken">Cancellation Token</param>
     /// <returns>AttributeString</returns>
-    public async Task<AttributeString> CreateStringAttribute(string databaseId, 
-        string collectionId, 
-        string key, 
-        int size, 
-        bool required, 
-        string? @default = null, 
-        bool? array = null, 
+    public async Task<AttributeString> CreateStringAttribute(string databaseId,
+        string collectionId,
+        string key,
+        int size,
+        bool required,
+        string? @default = null,
+        bool? array = null,
         CancellationToken cancellationToken = default)
     {
         IDictionary<string, object> bodyParameters = new Dictionary<string, object>
@@ -780,9 +776,9 @@ public class Databases : HttpClientProvider
     /// <param name="orders">Array of index orders. Maximum of 100 orders are allowed.</param>
     /// <param name="cancellationToken">CancellationToken</param>
     /// <returns>Index</returns>
-    public async Task<Models.Index> CreateIndex(string databaseId, 
-        string collectionId, 
-        string key, 
+    public async Task<Models.Index> CreateIndex(string databaseId,
+        string collectionId,
+        string key,
         string type,
         IEnumerable<string> attributes,
         IEnumerable<string>? orders = null,
