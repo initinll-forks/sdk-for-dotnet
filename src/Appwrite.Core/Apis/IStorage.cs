@@ -11,4 +11,7 @@ internal interface IStorage
 
     [Get("/storage/buckets")]
     Task<BucketList> ListBuckets([Query] IDictionary<string, object>? queryParameters = null, CancellationToken cancellationToken = default);
+
+    [Get("/storage/buckets/{bucketId}")]
+    Task<Bucket> GetBucket(string bucketId, CancellationToken cancellationToken = default);
 }

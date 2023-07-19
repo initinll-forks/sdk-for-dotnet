@@ -147,4 +147,16 @@ public class Storage : HttpClientProvider
 
         return await _storageApi.ListBuckets(queryParameters, cancellationToken);
     }
+
+    /// <summary>
+    /// Get Bucket
+    /// </summary>
+    /// <para>Get a storage bucket by its unique ID. This endpoint response returns a JSON object with the storage bucket metadata.</para>
+    /// <param name="bucketId">Bucket unique ID.</param>
+    /// <param name="cancellationToken">Cancellation Token</param>
+    /// <returns>Bucket</returns>
+    public async Task<Bucket> GetBucket(string bucketId, CancellationToken cancellationToken = default)
+    {
+        return await _storageApi.GetBucket(bucketId, cancellationToken);
+    }
 }
