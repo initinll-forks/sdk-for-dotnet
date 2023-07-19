@@ -8,4 +8,7 @@ internal interface IStorage
 {
     [Post("/storage/buckets")]
     Task<Bucket> CreateBucket([Body(BodySerializationMethod.UrlEncoded)] IDictionary<string, object> bodyParameters, CancellationToken cancellationToken = default);
+
+    [Get("/storage/buckets")]
+    Task<BucketList> ListBuckets([Query] IDictionary<string, object>? queryParameters = null, CancellationToken cancellationToken = default);
 }
