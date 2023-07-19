@@ -17,4 +17,7 @@ internal interface IStorage
 
     [Put("/storage/buckets/{bucketId}")]
     Task<Bucket> UpdateBucket(string bucketId, [Body(BodySerializationMethod.UrlEncoded)] IDictionary<string, object> bodyParameters, CancellationToken cancellationToken = default);
+
+    [Delete("/storage/buckets/{bucketId}")]
+    Task DeleteBucket(string bucketId, CancellationToken cancellationToken = default);
 }

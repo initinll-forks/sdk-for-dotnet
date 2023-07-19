@@ -257,4 +257,16 @@ public class Storage : HttpClientProvider
 
         return await _storageApi.UpdateBucket(bucketId, bodyParameters, cancellationToken);
     }
+
+    /// <summary>
+    /// Delete Bucket
+    /// </summary>
+    /// <para>Delete a storage bucket by its unique ID.</para>
+    /// <param name="bucketId">Bucket unique ID.</param>
+    /// <param name="cancellationToken">Cancellation Token</param>
+    /// <returns></returns>
+    public async Task DeleteBucket(string bucketId, CancellationToken cancellationToken = default)
+    {
+        await _storageApi.DeleteBucket(bucketId, cancellationToken);
+    }
 }
