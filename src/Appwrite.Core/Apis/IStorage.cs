@@ -14,4 +14,7 @@ internal interface IStorage
 
     [Get("/storage/buckets/{bucketId}")]
     Task<Bucket> GetBucket(string bucketId, CancellationToken cancellationToken = default);
+
+    [Put("/storage/buckets/{bucketId}")]
+    Task<Bucket> UpdateBucket(string bucketId, [Body(BodySerializationMethod.UrlEncoded)] IDictionary<string, object> bodyParameters, CancellationToken cancellationToken = default);
 }
